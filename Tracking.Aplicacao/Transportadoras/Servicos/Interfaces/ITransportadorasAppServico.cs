@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Tracking.DataTransfer.Transportadoras.Request;
 using Tracking.DataTransfer.Transportadoras.Response;
 using Tracking.Dominio.Generico.Repositorios;
+using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Transportadoras.Entidades;
 
 namespace Tracking.Aplicacao.Transportadoras.Servicos.Interfaces
 {
     public interface ITransportadorasAppServico
     {
-        IList<TransportadoraResponse> ListarPaginado(int pagina, int tamanho, int? order = 0, string? search = null);
+        PaginacaoConsulta<TransportadoraResponse> Listar(int? pagina, int quantidade, TransportadoraListarRequest transportadoraListarRequest);
         TransportadoraResponse Recuperar(int codigoTransportadora);
         TransportadoraResponse Inserir(TransportadoraInserirRequest request);
         TransportadoraResponse Editar(int codigoTransportadora, TransportadoraEditarRequest request);

@@ -4,6 +4,7 @@ using Tracking.Aplicacao.Transportadoras.Servicos.Interfaces;
 using Tracking.DataTransfer.Transportadoras.Request;
 using Tracking.DataTransfer.Transportadoras.Response;
 using Tracking.Dominio.Emails.Entidades;
+using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Telefones.Entidades;
 using Tracking.Dominio.Transportadoras.Entidades;
 using Tracking.Dominio.Transportadoras.Repositorios;
@@ -136,47 +137,46 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
             }
         }
 
-        public IList<TransportadoraResponse> ListarPaginado(int pagina, int tamanho, int? order = 0, string? search = null)
+        public PaginacaoConsulta<TransportadoraResponse> Listar(int? pagina, int quantidade, TransportadoraListarRequest transportadoraListarRequest)
         {
-            IQueryable<Transportadora> transportadora = transportadorasRepositorio.Query();
+             var query = transportadorasRepositorio.Query();
+            if (pagina.Value <= 0) throw new Exception("Pagina não especificada");
+
+            if (transportadoraListarRequest is null)
+                throw new Exception();
+
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.InscricaoEstadual))
+                query = query.Where(p => p.InscricaoEstadual.Contains(transportadoraListarRequest.InscricaoEstadual));
             
-            if (!string.IsNullOrEmpty(search))
-            {
-                transportadora = transportadora.Where(x=>x.NomeFantasia.Contains(search));
-            }
-            
-            switch (order)
-            {
-                case 1:
-                    transportadora = transportadora.OrderBy(x=>x.RazaoSocial);
-                    break;
-                case 2:
-                    transportadora = transportadora.OrderBy(x=>x.Cidade);
-                    break;
-                case 3:
-                    transportadora = transportadora.OrderBy(x=>x.Cnpj);
-                    break;
-                case 4:
-                    transportadora = transportadora.OrderBy(x=>x.InscricaoEstadual);
-                    break;
-                case 5:
-                    transportadora = transportadora.OrderBy(x=>x.Telefones);
-                    break;
-                case 6:
-                    transportadora = transportadora.OrderBy(x=>x.Emails);
-                    break;
-                case 7:
-                    transportadora = transportadora.OrderBy(x=>x.Cidade);
-                    break;
-                case 8:
-                    transportadora = transportadora.OrderBy(x=>x.Cep);
-                    break;
-                case 9:
-                    transportadora = transportadora.OrderBy(x=>x.Endereco);
-                    break;
-            } 
-           transportadora = transportadora.Skip((pagina-1)*tamanho).Take(tamanho);
-            var response = mapper.Map<IList<TransportadoraResponse>>(transportadora.ToList());
+             if (!String.IsNullOrEmpty(transportadoraListarRequest.NomeFantasia))
+                query = query.Where(p => p.NomeFantasia.Contains(transportadoraListarRequest.NomeFantasia));
+
+                if (!String.IsNullOrEmpty(transportadoraListarRequest.RazaoSocial))
+                query = query.Where(p => p.RazaoSocial.Contains(transportadoraListarRequest.RazaoSocial));
+
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Cidade))
+                query = query.Where(p => p.Cidade.Contains(transportadoraListarRequest.Cidade));
+
+             if (!String.IsNullOrEmpty(transportadoraListarRequest.Endereco))
+                query = query.Where(p => p.Endereco.Contains(transportadoraListarRequest.Endereco));
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Cnpj))
+                query = query.Where(p => p.Cnpj.Contains(transportadoraListarRequest.Cnpj));
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Email1))
+                query = query.Where(x => x.Emails.Where(t => t.EnderecoEmail == transportadoraListarRequest.Email1).Any());
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Email2))
+                query = query.Where(x => x.Emails.Where(t => t.EnderecoEmail == transportadoraListarRequest.Email2).Any());
+           if (!String.IsNullOrEmpty(transportadoraListarRequest.NumeroTelefone1))
+                query = query.Where(x => x.Telefones.Where(t => t.NumeroTelefone == transportadoraListarRequest.NumeroTelefone1).Any());
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.NumeroTelefone2))
+                query = query.Where(x => x.Telefones.Where(t => t.NumeroTelefone == transportadoraListarRequest.NumeroTelefone2).Any());
+           
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Site))
+                query = query.Where(p => p.Site.Contains(transportadoraListarRequest.Site));
+            if (!String.IsNullOrEmpty(transportadoraListarRequest.Uf))
+                query = query.Where(p => p.Uf.Contains(transportadoraListarRequest.Uf));
+            PaginacaoConsulta<Transportadora> transportadoras = transportadorasRepositorio.Listar(query, pagina, quantidade);
+            PaginacaoConsulta<TransportadoraResponse> response;
+            response = mapper.Map<PaginacaoConsulta<TransportadoraResponse>>(transportadoras);
             return response;
         }
 

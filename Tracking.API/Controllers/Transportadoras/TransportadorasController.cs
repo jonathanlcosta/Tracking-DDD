@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tracking.Aplicacao.Transportadoras.Servicos.Interfaces;
 using Tracking.DataTransfer.Transportadoras.Request;
 using Tracking.DataTransfer.Transportadoras.Response;
+using Tracking.Dominio.Paginacao;
 
 namespace Tracking.API.Controllers.Transportadoras
 {
@@ -32,9 +33,8 @@ namespace Tracking.API.Controllers.Transportadoras
         }
 
        [HttpGet]
-        public ActionResult<IList<TransportadoraResponse>> ListarPaginado(int pagina, int tamanho, int? order, string? search )
-        {
-            var response = transportadorasAppServico.ListarPaginado(pagina, tamanho, order, search);
+        public ActionResult<PaginacaoConsulta<TransportadoraResponse>> Listar(int pagina, int quantidade, [FromQuery] TransportadoraListarRequest transportadoraListarRequest)
+        {    var response = transportadorasAppServico.Listar(pagina, quantidade, transportadoraListarRequest);
             return Ok(response);
         }
 
