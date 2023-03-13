@@ -3,6 +3,7 @@ using NHibernate;
 using Tracking.Aplicacao.Produtos.Servicos.Interfaces;
 using Tracking.DataTransfer.Produtos.Request;
 using Tracking.DataTransfer.Produtos.Response;
+using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Entidades;
 using Tracking.Dominio.Produtos.Enumeradores;
 using Tracking.Dominio.Produtos.Repositorios;
@@ -35,7 +36,7 @@ namespace Produtos.Aplicacao.Produtos.Servicos
                                     produto.Peso, 
                                     produto.Altura,
                                     produto.Largura,
-                                    produto.Comprimento);
+                                    produto.Largura);
             var transacao = session.BeginTransaction();
             try
             {
@@ -86,42 +87,40 @@ namespace Produtos.Aplicacao.Produtos.Servicos
             return response;
         }
 
-        public IList<ProdutoResponse> ListarPaginado(int pagina, int tamanho, int? order = 0, string? search = "")
+         public PaginacaoConsulta<ProdutoResponse> Listar(int? pagina, int quantidade, ProdutoListarRequest produtoListarRequest)
         {
-            IQueryable<Produto> produtos = produtosRepositorio.Query()
-            .Where(x => x.Situacao != SituacaoProdutoEnum.Inativo);
-            
-            if (!string.IsNullOrEmpty(search))
+             if (pagina.Value <= 0) throw new Exception("Pagina não especificada");
+
+            IQueryable<Produto> query = produtosRepositorio.Query().Where(p => p.Situacao != SituacaoProdutoEnum.Inativo);
+            if (produtoListarRequest is null)
+                throw new Exception();
+
+            if (!string.IsNullOrEmpty(produtoListarRequest.Descricao))
+                query = query.Where(p => p.Descricao.Contains(produtoListarRequest.Descricao));
+
+           if (produtoListarRequest.Preco != 0)
             {
-                produtos = produtos.Where(x=>x.Descricao.Contains(search));
-            }
-            
-            switch (order)
+                query = query.Where(p => p.Preco == produtoListarRequest.Preco);}
+
+            if (produtoListarRequest.Altura != 0)
             {
-                case 1:
-                    produtos = produtos.OrderBy(x=>x.CodigoProduto);
-                    break;
-                case 2:
-                    produtos = produtos.OrderBy(x=>x.Descricao);
-                    break;
-                case 3:
-                    produtos = produtos.OrderBy(x=>x.Altura);
-                    break;
-                case 4:
-                    produtos = produtos.OrderBy(x=>x.Comprimento);
-                    break;
-                case 5:
-                    produtos = produtos.OrderBy(x=>x.Largura);
-                    break;
-                case 6:
-                    produtos = produtos.OrderBy(x=>x.Peso);
-                    break;
-                case 7:
-                    produtos = produtos.OrderBy(x=>x.Preco);
-                    break;
-            } 
-            produtos = produtos.Skip((pagina-1)*tamanho).Take(tamanho);
-            var response = mapper.Map<IList<ProdutoResponse>>(produtos.ToList());
+                query = query.Where(p => p.Altura == produtoListarRequest.Altura);}
+
+            if (produtoListarRequest.Comprimento != 0)
+            {
+                query = query.Where(p => p.Comprimento == produtoListarRequest.Comprimento);}
+
+            if (produtoListarRequest.Largura != 0)
+            {
+                query = query.Where(p => p.Largura == produtoListarRequest.Largura);}
+
+            if (produtoListarRequest.Peso != 0)
+            {
+                query = query.Where(p => p.Peso == produtoListarRequest.Peso);}
+
+            PaginacaoConsulta<Produto> produtos = produtosRepositorio.Listar(query, pagina, quantidade);
+            PaginacaoConsulta<ProdutoResponse> response;
+            response = mapper.Map<PaginacaoConsulta<ProdutoResponse>>(produtos);
             return response;
         }
 

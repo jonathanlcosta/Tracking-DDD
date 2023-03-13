@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tracking.Aplicacao.Produtos.Servicos.Interfaces;
 using Tracking.DataTransfer.Produtos.Request;
 using Tracking.DataTransfer.Produtos.Response;
+using Tracking.Dominio.Paginacao;
 
 namespace Tracking.API.Controllers.Produtos
 {
@@ -32,9 +33,8 @@ namespace Tracking.API.Controllers.Produtos
         }
 
        [HttpGet]
-        public ActionResult<IList<ProdutoResponse>> ListarPaginado(int pagina, int tamanho, int? order, string? search )
-        {
-            var response = produtosAppServico.ListarPaginado(pagina, tamanho, order, search);
+        public ActionResult<PaginacaoConsulta<ProdutoResponse>> Listar(int pagina, int quantidade, [FromQuery] ProdutoListarRequest produtoListarRequest)
+        {    var response = produtosAppServico.Listar(pagina, quantidade, produtoListarRequest);
             return Ok(response);
         }
 

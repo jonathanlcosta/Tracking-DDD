@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Repositorios;
 
 namespace Tracking.Dominio.Generico.Repositorios
@@ -16,7 +17,7 @@ namespace Tracking.Dominio.Generico.Repositorios
 
         void Excluir(T entidade);
 
-        IList<T> Listar(IQueryable<T> query);
+        PaginacaoConsulta<T> Listar(IQueryable<T> query, int? pagina, int quantidade);
 
         IQueryable<T> Query();
     }

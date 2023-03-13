@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NHibernate;
 using Tracking.Dominio.Generico.Repositorios;
+using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Entidades;
 using Tracking.Dominio.Produtos.Repositorios;
 
@@ -33,9 +34,12 @@ namespace Tracking.Infra.Genericos
             return entidade;
         }
 
-        public IList<T> Listar(IQueryable<T> query)
+        public PaginacaoConsulta<T> Listar(IQueryable<T> query, int? pagina, int quantidade)
         {
-            return query.ToList();
+            int quantidadeRegistros = query.ToList().Count();
+            IList<T> registros = query.Skip((pagina.Value-1)*quantidade).Take(quantidade).ToList();
+            PaginacaoConsulta<T> consulta = new PaginacaoConsulta<T>(quantidadeRegistros, registros);
+            return consulta;
         }
 
         public IQueryable<T> Query()

@@ -1,0 +1,15 @@
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\bin\Debug\net7.0\Tracking.Infra.deps.json
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\bin\Debug\net7.0\Tracking.Infra.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\bin\Debug\net7.0\Tracking.Infra.pdb
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\bin\Debug\net7.0\Tracking.Dominio.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\bin\Debug\net7.0\Tracking.Dominio.pdb
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.csproj.AssemblyReference.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.AssemblyInfoInputs.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.AssemblyInfo.cs
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.csproj.CoreCompileInputs.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.csproj.CopyComplete
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\refint\Tracking.Infra.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\Tracking.Infra.pdb
+C:\Users\nickc\Downloads\Tracking\Tracking.Infra\obj\Debug\net7.0\ref\Tracking.Infra.dll

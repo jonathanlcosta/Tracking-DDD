@@ -1,0 +1,12 @@
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\bin\Debug\net7.0\Tracking.DataTransfer.deps.json
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\bin\Debug\net7.0\Tracking.DataTransfer.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\bin\Debug\net7.0\Tracking.DataTransfer.pdb
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.csproj.AssemblyReference.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.AssemblyInfoInputs.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.AssemblyInfo.cs
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.csproj.CoreCompileInputs.cache
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\refint\Tracking.DataTransfer.dll
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\Tracking.DataTransfer.pdb
+C:\Users\nickc\Downloads\Tracking\Tracking.DataTransfer\obj\Debug\net7.0\ref\Tracking.DataTransfer.dll
