@@ -19,7 +19,6 @@ namespace Tracking.Dominio.Clientes.Entidades
    public virtual string? Cidade { get; set; }
    public virtual string? Cep { get; set; }
    public virtual string? Uf { get; set; }
-
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
 
@@ -68,19 +67,21 @@ namespace Tracking.Dominio.Clientes.Entidades
 
         public virtual void SetEmail(string email)
         {
-             try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-        }
-        catch
-        {
-            throw new Exception("Endereço de e-mail inválido.");
-        }
-        Email = email;
+            string pattern = @"^[a-zA-Z0-9]+@\S+\.com(\.\w+)?$";
+            Regex regex = new Regex(pattern);
+            if (!regex.IsMatch(email))
+            {
+                throw new Exception("Email com formato invalido");
+            }
+            this.Email = email;
         }
 
         public virtual void SetTipoCliente(TipoPessoa tipoPessoa)
         {
+            if (!Enum.IsDefined(tipoPessoa))
+            {
+                throw new Exception("Tipo não existe");
+            }
             TipoPessoa = tipoPessoa;
         }
 
@@ -140,11 +141,22 @@ namespace Tracking.Dominio.Clientes.Entidades
 
     public virtual void SetCep(string? cep)
         {
-            if (String.IsNullOrEmpty(cep))
-                throw new ArgumentException($"O campo {nameof(cep)} não pode ser vazio.");
-            if (cep.Length > 9)
-                throw new ArgumentOutOfRangeException($"O campo {nameof(cep)} deve ter 9 caracteres.");
-            Cep = cep;
+            string cepFormatado = Regex.Replace(cep, @"\W", "");
+            if (string.IsNullOrWhiteSpace(cepFormatado))
+            {
+                throw new Exception("Cep nulo ou com apenas espaços em branco");
+            }
+            if (cepFormatado.Length > 8 || cepFormatado.Length < 8)
+            {
+                throw new Exception("Tamanho do cep inválido");
+            }
+            string regexPattern = @"\D+";
+            bool regexTrial = Regex.IsMatch(cepFormatado, regexPattern);
+            if (regexTrial)
+            {
+                throw new Exception("O cep só pode conter caracteres númericos");
+            }
+            this.Cep = cepFormatado;
         }
 
     public virtual void SetCidade(string cidade)
