@@ -6,6 +6,7 @@ using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.Clientes.Enumeradores;
 using Tracking.Dominio.Clientes.Repositorios;
 using Tracking.Dominio.Clientes.Servicos.Interfaces;
+using Tracking.Dominio.ColetaMercadorias.Entidades;
 
 namespace Tracking.Dominio.Clientes.Servicos
 {
@@ -17,7 +18,7 @@ namespace Tracking.Dominio.Clientes.Servicos
             this.clientesRepositorio = clientesRepositorio;
         }
 
-        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
+        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf, IList<ColetaMercadoria> coletaMercadorias)
         {
             Cliente cliente = Validar(codigo);
 
@@ -38,9 +39,9 @@ namespace Tracking.Dominio.Clientes.Servicos
             return clientesRepositorio.Inserir(cliente);
         }
 
-        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
+        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf, IList<ColetaMercadoria> coletaMercadorias)
         {
-            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cpf);
+            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cpf, coletaMercadorias);
         }
 
         public Cliente Validar(int codigo)

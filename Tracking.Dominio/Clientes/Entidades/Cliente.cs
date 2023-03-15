@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Tracking.Dominio.Clientes.Enumeradores;
+using Tracking.Dominio.ColetaMercadorias.Entidades;
 
 namespace Tracking.Dominio.Clientes.Entidades
 {
@@ -22,12 +23,12 @@ namespace Tracking.Dominio.Clientes.Entidades
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
 
-    // public virtual IList<Coleta>? ColetasMercadoria { get; set; }
+    public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; set; }
 
    protected Cliente()
         { }
 
-        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, string uf, string telefone)
+        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, string uf, string telefone, IList<ColetaMercadoria> coletaMercadorias)
         {
             SetNome(nome);
             SetEmail(email);
@@ -40,14 +41,14 @@ namespace Tracking.Dominio.Clientes.Entidades
         }
 
         // Construtor Pessoa Fisica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf) : this(nome, email, endereco, cidade, cep, uf, telefone)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf, IList<ColetaMercadoria> coletaMercadorias) : this(nome, email, endereco, cidade, cep, uf, telefone, coletaMercadorias)
         {
             SetTipoCliente(TipoPessoa.Fisica);
             SetCPF(cpf);
         }
 
         // Construtor Pessoa Jurídica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial) : this(nome, email, endereco, cidade, cep, uf, telefone)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial, IList<ColetaMercadoria> coletaMercadorias) : this(nome, email, endereco, cidade, cep, uf, telefone, coletaMercadorias)
         {
             SetTipoCliente(TipoPessoa.Juriridica);
             SetCNPJ(cnpj);
