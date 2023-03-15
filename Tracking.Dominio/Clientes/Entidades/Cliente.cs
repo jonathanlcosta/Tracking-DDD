@@ -10,25 +10,25 @@ namespace Tracking.Dominio.Clientes.Entidades
 {
     public class Cliente
     {
-    public virtual int Id { get; set; }
-    public virtual string? Nome { get; set; }
-    public virtual TipoPessoa TipoPessoa { get; set; }
-    public virtual string? CpfCnpj { get; set; }
-    public virtual string? Email { get; set; }
-    public virtual string? Telefone { get; set; }
-    public virtual string? Endereco { get; set; }
-   public virtual string? Cidade { get; set; }
-   public virtual string? Cep { get; set; }
-   public virtual string? Uf { get; set; }
+    public virtual int Id { get; protected set; }
+    public virtual string? Nome { get; protected set; }
+    public virtual TipoPessoa TipoPessoa { get; protected set; }
+    public virtual string? CpfCnpj { get; protected set; }
+    public virtual string? Email { get; protected set; }
+    public virtual string? Telefone { get; protected set; }
+    public virtual string? Endereco { get; protected set; }
+   public virtual string? Cidade { get; protected set; }
+   public virtual string? Cep { get; protected set; }
+   public virtual string? Uf { get; protected set; }
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
 
-    public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; set; }
+    public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
 
    protected Cliente()
         { }
 
-        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, string uf, string telefone, IList<ColetaMercadoria> coletaMercadorias)
+        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, string uf, string telefone)
         {
             SetNome(nome);
             SetEmail(email);
@@ -41,14 +41,14 @@ namespace Tracking.Dominio.Clientes.Entidades
         }
 
         // Construtor Pessoa Fisica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf, IList<ColetaMercadoria> coletaMercadorias) : this(nome, email, endereco, cidade, cep, uf, telefone, coletaMercadorias)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
         {
             SetTipoCliente(TipoPessoa.Fisica);
             SetCPF(cpf);
         }
 
         // Construtor Pessoa Jurídica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial, IList<ColetaMercadoria> coletaMercadorias) : this(nome, email, endereco, cidade, cep, uf, telefone, coletaMercadorias)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial) : this(nome, email, endereco, cidade, cep, uf, telefone)
         {
             SetTipoCliente(TipoPessoa.Juriridica);
             SetCNPJ(cnpj);

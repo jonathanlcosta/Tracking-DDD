@@ -14,7 +14,7 @@ namespace Tracking.Dominio.Clientes.Servicos
         {
             this.clientesRepositorio = clientesRepositorio;
         }
-        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial, IList<ColetaMercadoria> coletaMercadorias)
+        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial)
         {
              Cliente cliente = Validar(codigo);
             if (!String.IsNullOrEmpty(nome)) cliente.SetNome(nome);
@@ -35,9 +35,9 @@ namespace Tracking.Dominio.Clientes.Servicos
             return clientesRepositorio.Inserir(cliente);
         }
 
-        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial, IList<ColetaMercadoria> coletaMercadorias)
+        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial)
         {
-            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cnpj, ie, razaoSocial, coletaMercadorias);
+            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cnpj, ie, razaoSocial);
         }
 
         public Cliente Validar(int codigo)
