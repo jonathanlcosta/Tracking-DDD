@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.Clientes.Enumeradores;
 using Tracking.Dominio.Clientes.Repositorios;
+using Tracking.Dominio.Clientes.Servicos.Interfaces;
 
-namespace Tracking.Dominio.Clientes.Servicos.Interfaces
+namespace Tracking.Dominio.Clientes.Servicos.Servicos
 {
     public class PessoaJuridicasServico : IPessoaJuridicasServico
     {
