@@ -26,9 +26,7 @@ namespace Tracking.Infra.Clientes.Mapeamentos
         Map(x => x.Uf, "uf");
         Map(x => x.IE, "ie");
         Map(x => x.RazaoSocial, "razaoSocial");
-        HasManyToMany(x=>x.ColetasMercadoria).
-            Table("coletas")
-            .ParentKeyColumn("cpf_cnpj_cliente");
+        HasMany(x => x.ColetasMercadoria).Cascade.All().Inverse().Not.LazyLoad();
 
         }
     }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Tracking.DataTransfer.Clientes.PessoaFisicas.Request
 {
-    public class PessoasFisicasListarRequest
+    public class PessoaFisicasListarRequest
     {
     public int Id { get; set; }
     public string? Nome { get; set; }
