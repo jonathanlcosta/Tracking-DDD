@@ -23,7 +23,7 @@ namespace Tracking.Dominio.Clientes.Entidades
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
 
-    public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
+    // public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
 
    protected Cliente()
         { }
@@ -93,7 +93,7 @@ namespace Tracking.Dominio.Clientes.Entidades
             if (cpf.Length != 11)
                 throw new ArgumentOutOfRangeException("O CPF deve conter 11 caracteres.");
 
-            CpfCnpj = cpf;
+            CpfCnpj = cpf.Replace(".", "").Replace("/", "").Replace("-", "");
         }
 
         public virtual void SetCNPJ(string? cnpj)
@@ -103,7 +103,7 @@ namespace Tracking.Dominio.Clientes.Entidades
             if (cnpj.Length != 14)
                 throw new ArgumentOutOfRangeException("O CNPJ deve conter 14 caracteres.");
 
-            CpfCnpj = cnpj;
+            CpfCnpj = cnpj.Replace(".", "").Replace("/", "").Replace("-", "");
         }
 
         public virtual void SetIE(string? ie)
@@ -112,7 +112,7 @@ namespace Tracking.Dominio.Clientes.Entidades
                 throw new ArgumentNullException("A Inscrição Estadual deve ser preenchida.");
             if (ie.Length != 9)
                 throw new ArgumentException("A Inscrição Estadual deve ter 9 digitos.");
-            IE = ie;
+            IE = ie.Replace(".", "").Replace("/", "").Replace("-", "");
         }
         public virtual void SetRazaoSocial(string? razaoSocial)
         {

@@ -68,7 +68,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
                 throw new ArgumentNullException("O CNPJ não pode ser vazio.");
             if (cnpj.Length != 14)
                 throw new ArgumentOutOfRangeException("O CNPJ deve conter 14 caracteres.");
-            Cnpj = cnpj;
+            Cnpj = cnpj.Replace(".", "").Replace("/", "").Replace("-", "");
     }
 
     public virtual void SetInscricaoEstadual(string inscricaoEstadual)

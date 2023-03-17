@@ -26,7 +26,7 @@ namespace Tracking.Infra.Clientes.Mapeamentos
         Map(x => x.Uf, "uf");
         Map(x => x.IE, "ie");
         Map(x => x.RazaoSocial, "razaoSocial");
-        HasMany(x => x.ColetasMercadoria).Cascade.All().Inverse().Not.LazyLoad();
+        // HasMany(x => x.ColetasMercadoria).Cascade.All().Inverse().Not.LazyLoad();
 
         }
     }

@@ -13,7 +13,7 @@ namespace Tracking.Aplicacao.Clientes.Profiles
     {
         public PessoaJuridicasProfile()
         {
-            ReplaceMemberName("CPFCNPJ", "CNPJ");
+            ReplaceMemberName("CpfCnpj", "Cnpj");
             CreateMap<Cliente, PessoaJuridicasResponse>();
             CreateMap<PessoaJuridicasListarRequest, Cliente>();
             CreateMap<PessoaJuridicasCadastroRequest, Cliente>();
