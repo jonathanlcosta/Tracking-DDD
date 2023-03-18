@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Enumeradores;
+using Tracking.Dominio.OcorrenciaColetaMercadorias.Entidades;
 using Tracking.Dominio.Transportadoras.Entidades;
 
 namespace Tracking.Dominio.ColetaMercadorias.Entidades
@@ -19,7 +20,12 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     public virtual DateTime DataCadastro { get; set; }
     public virtual DateTime? DataConclusao { get; set; }
     public virtual decimal ValorFrete { get; set; }
-    // public virtual IList<ItemColetaMercadoria>? Produtos { get; set; }
-    // public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; set; }
+    public virtual IList<ItemColetaMercadoria>? Produtos { get; set; }
+    public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; set; }
+
+    protected ColetaMercadoria()
+    {
+        
+    }
     }
 }

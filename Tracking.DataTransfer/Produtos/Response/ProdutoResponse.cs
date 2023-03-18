@@ -10,7 +10,7 @@ namespace Tracking.DataTransfer.Produtos.Response
     public int CodigoProduto { get; set; }
     public string? Descricao { get; set; }
     public string? Situacao { get; set; }
-    public decimal Preco { get; set; }
+    public double Preco { get; set; }
     public double Peso { get; set; }
     public int Altura { get; set; }
     public int Largura { get; set; }

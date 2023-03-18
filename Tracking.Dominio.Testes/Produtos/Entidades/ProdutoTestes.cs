@@ -45,7 +45,7 @@ namespace Tracking.Dominio.Testes.Produtos.Entidades
             [Fact]
             public void Dado_PrecoValido_Espero_PropriedadesPreenchidas()
             {
-                decimal preco = 12m;
+                decimal preco = 12;
                 sut.SetPreco(preco);
                 sut.Preco.Should().Be(preco);
                 sut.Preco.Should().BeGreaterThan(0);
@@ -57,14 +57,14 @@ namespace Tracking.Dominio.Testes.Produtos.Entidades
             [Theory]
             [InlineData(0)]
             [InlineData(-1)]
-            public void Dado_AlturaMenorOuIgualAZero_Espero_Excecao(double altura)
+            public void Dado_AlturaMenorOuIgualAZero_Espero_Excecao(decimal altura)
             {
                 sut.Invoking(x => x.SetAltura(altura)).Should().Throw<Exception>();
             }
             [Fact]
             public void Dado_AlturaValido_Espero_PropriedadesPreenchidas()
             {
-                double altura = 2;
+                decimal altura = 2;
                 sut.SetAltura(altura);
                 sut.Altura.Should().Be(altura);
                 sut.Altura.Should().BeGreaterThan(0);
@@ -76,14 +76,14 @@ namespace Tracking.Dominio.Testes.Produtos.Entidades
             [Theory]
             [InlineData(0)]
             [InlineData(-1)]
-            public void Dado_PesoMenorOuIgualAZero_Espero_Excecao(double peso)
+            public void Dado_PesoMenorOuIgualAZero_Espero_Excecao(decimal peso)
             {
                 sut.Invoking(x => x.SetPeso(peso)).Should().Throw<Exception>();
             }
             [Fact]
             public void Dado_PesoValido_Espero_PropriedadesPreenchidas()
             {
-                double peso = 2.5;
+                decimal peso = 2.10m;
                 sut.SetPeso(peso);
                 sut.Peso.Should().Be(peso);
                 sut.Peso.Should().BeGreaterThan(0);
@@ -96,14 +96,14 @@ namespace Tracking.Dominio.Testes.Produtos.Entidades
             [Theory]
             [InlineData(0)]
             [InlineData(-1)]
-            public void Dado_LarguraMenorOuIgualAZero_Espero_Excecao(double largura)
+            public void Dado_LarguraMenorOuIgualAZero_Espero_Excecao(decimal largura)
             {
                 sut.Invoking(x => x.SetLargura(largura)).Should().Throw<Exception>();
             }
             [Fact]
             public void Dado_LarguraValido_Espero_PropriedadesPreenchidas()
             {
-                double largura = 2;
+                decimal largura = 2;
                 sut.SetLargura(largura);
                 sut.Largura.Should().Be(largura);
                 sut.Largura.Should().BeGreaterThan(0);
@@ -115,14 +115,14 @@ namespace Tracking.Dominio.Testes.Produtos.Entidades
             [Theory]
             [InlineData(0)]
             [InlineData(-1)]
-            public void Dado_ComprimentoMenorOuIgualAZero_Espero_Excecao(double comprimento)
+            public void Dado_ComprimentoMenorOuIgualAZero_Espero_Excecao(decimal comprimento)
             {
                 sut.Invoking(x => x.SetComprimento(comprimento)).Should().Throw<Exception>();
             }
             [Fact]
             public void Dado_ComprimentoValido_Espero_PropriedadesPreenchidas()
             {
-                double comprimento = 2;
+                decimal comprimento = 2;
                 sut.SetComprimento(comprimento);
                 sut.Comprimento.Should().Be(comprimento);
                 sut.Comprimento.Should().BeGreaterThan(0);

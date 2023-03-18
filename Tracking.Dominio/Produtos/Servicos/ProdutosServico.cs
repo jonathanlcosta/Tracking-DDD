@@ -15,7 +15,7 @@ namespace Tracking.Dominio.Produtos.Servicos
         {
             this.produtosRepositorio = produtosRepositorio;
         }
-        public Produto EditarProduto(int codigoProduto, string descricao, decimal preco, double peso, double altura, double largura, double comprimento)
+        public Produto EditarProduto(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
         {
             var produto = ValidarProduto(codigoProduto);
             if(!string.IsNullOrEmpty(descricao) && produto.Descricao != descricao) produto.SetDescricao(descricao);
@@ -40,7 +40,7 @@ namespace Tracking.Dominio.Produtos.Servicos
             return produtoResponse;
         }
 
-        public Produto InstanciarProduto(string descricao, decimal preco, double peso, double altura, double largura, double comprimento)
+        public Produto InstanciarProduto(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
         {
            var produtoResponse = new Produto(descricao, preco, peso, altura, largura, comprimento);
             return produtoResponse;

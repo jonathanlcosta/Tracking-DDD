@@ -9,9 +9,9 @@ namespace Tracking.DataTransfer.Produtos.Request
     {
     public string? Descricao { get; set; }
     public decimal Preco { get; set; }
-    public double Peso { get; set; }
-    public double Altura { get; set; }
-    public double Largura { get; set; }
-    public double Comprimento { get; set; }
+    public decimal Peso { get; set; }
+    public decimal Altura { get; set; }
+    public decimal Largura { get; set; }
+    public decimal Comprimento { get; set; }
     }
 }

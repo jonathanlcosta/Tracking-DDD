@@ -11,7 +11,7 @@ namespace Tracking.Dominio.Produtos.Servicos.Interfaces
         Produto ValidarProduto(int codigoProduto);
         Produto InserirProduto(Produto produto);
         void ExcluirProduto(int id);
-        Produto InstanciarProduto(string descricao, decimal preco, double peso, double altura, double largura, double comprimento);
-        Produto EditarProduto(int codigoProduto, string descricao, decimal preco, double peso, double altura, double largura, double comprimento);
+        Produto InstanciarProduto(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
+        Produto EditarProduto(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
     }
 }

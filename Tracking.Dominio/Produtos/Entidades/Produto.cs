@@ -12,11 +12,11 @@ namespace Tracking.Dominio.Produtos.Entidades
     public virtual string? Descricao { get; protected set; }
     public virtual SituacaoProdutoEnum Situacao { get; protected set; }
     public virtual decimal Preco { get; protected set; }
-    public virtual double Peso { get; protected set; }
-    public virtual double Altura { get; protected set; }
-    public virtual double Largura { get; protected set; }
-    public virtual double Comprimento { get; protected set; }
-    public Produto(string descricao, decimal preco, double peso, double altura, double largura, double comprimento)
+    public virtual decimal Peso { get; protected set; }
+    public virtual decimal Altura { get; protected set; }
+    public virtual decimal Largura { get; protected set; }
+    public virtual decimal Comprimento { get; protected set; }
+    public Produto(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
     {
         SetDescricao(descricao);
         SetPreco(preco);
@@ -57,7 +57,7 @@ namespace Tracking.Dominio.Produtos.Entidades
             Preco = preco;
         }
 
-        public virtual void SetPeso(double peso)
+        public virtual void SetPeso(decimal peso)
         {
             if(peso <= 0)
             {
@@ -66,7 +66,7 @@ namespace Tracking.Dominio.Produtos.Entidades
             Peso = peso;
         }
 
-        public virtual void SetAltura(double altura)
+        public virtual void SetAltura(decimal altura)
         {
             if(altura <= 0)
             {
@@ -75,7 +75,7 @@ namespace Tracking.Dominio.Produtos.Entidades
            Altura = altura;
         }
 
-        public virtual void SetLargura(double largura)
+        public virtual void SetLargura(decimal largura)
         {
             if(largura <= 0)
             {
@@ -84,7 +84,7 @@ namespace Tracking.Dominio.Produtos.Entidades
            Largura = largura;
         }
 
-         public virtual void SetComprimento(double comprimento)
+         public virtual void SetComprimento(decimal comprimento)
         {
             if(comprimento <= 0)
             {

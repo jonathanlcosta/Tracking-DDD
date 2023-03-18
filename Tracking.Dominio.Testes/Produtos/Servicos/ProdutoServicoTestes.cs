@@ -45,12 +45,11 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             public void Dado_ParametrosParaCriarProduto_Espero_ProdutoInstanciado()
             {
                 string descricao = "parabrisa";
-                decimal preco = 20m;
-                double peso = 2;
-                double altura = 2;
-                double largura = 1;
-                double comprimento = 1;
-                double profundidade = 1;
+                decimal preco = 20;
+                decimal peso = 2;
+                decimal altura = 2;
+                decimal largura = 1;
+                decimal comprimento = 1;
                 var produto = sut.InstanciarProduto(descricao, preco, peso, altura, largura, comprimento );
 
                 produto.Should().NotBeNull();
@@ -84,11 +83,11 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             {
                 produtosRepositorio.Recuperar(1).Returns(produtoValido);
 
-                sut.EditarProduto(1, "parabrisa", 123m, 1, 1, 2, 3);
+                sut.EditarProduto(1, "parabrisa", 123, 1, 1, 2, 3);
 
                 produtoValido.CodigoProduto.Should().Be(1);
                 produtoValido.Descricao.Should().Be("parabrisa");
-                produtoValido.Preco.Should().Be(123m);
+                produtoValido.Preco.Should().Be(123);
                 produtoValido.Peso.Should().Be(1);
                 produtoValido.Altura.Should().Be(1);
                 produtoValido.Largura.Should().Be(2);
