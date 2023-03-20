@@ -54,6 +54,13 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
                 throw new ArgumentNullException("O campo de cliente não pode ser nulo.");
             Cliente = cliente;
         }
+
+    public virtual void SetTransportadora(Transportadora? transportadora)
+        {
+            if (transportadora == null)
+                throw new ArgumentNullException("O campo de transportadora não pode ser nulo.");
+            Transportadora = transportadora;
+        }
      public virtual void SetItensColetados(IEnumerable<ItemColetaMercadoria>? itensColeta)
         {
             if (itensColeta == null)
