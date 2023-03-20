@@ -9,27 +9,78 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
 {
     public class ItemColetaMercadoria
     {
-    public virtual int Id { get; set; }
-    public virtual ColetaMercadoria? ColetaMercadoria { get; set; }
-    public virtual Produto? Produto { get; set; }
-    public virtual FreteOpcoesEnum TipoFrete  { get; set; }
-    public virtual  int Quantidade { get; set; }
+    public virtual int Id { get; protected set; }
+    public virtual ColetaMercadoria? ColetaMercadoria { get; protected set; }
+    public virtual Produto? Produto { get; protected set; }
+    public virtual FreteOpcoesEnum TipoFrete  { get; protected set; }
+    public virtual string? Descricao { get; protected set; }
+    public virtual int Quantidade { get; protected set; }
+    public virtual decimal ValorProduto { get; protected set; }
+    public virtual decimal Dimensoes { get; protected set; }
+    public virtual decimal ValorFrete { get; protected set; }
+
 
     public ItemColetaMercadoria()
     {
         
     }
 
-    public ItemColetaMercadoria( Produto produto, FreteOpcoesEnum opcao, int quantidade)
+    public ItemColetaMercadoria(Produto produto, FreteOpcoesEnum opcao, int quantidade, ColetaMercadoria coletaMercadoria, string Descricao,
+    decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete )
     {
-    CalcularCustoFrete(opcao, produto.Altura, produto.Largura, produto.Altura, produto.Preco, quantidade);
+        SetProduto(produto);
+        SetQuantidade(quantidade);
+        SetColetaMercadoria(coletaMercadoria);
+        SetDescricao(descricao);
+        SetValorProduto(valorProduto);
     }
 
-    public static decimal CalcularCustoFrete(FreteOpcoesEnum opcao, decimal altura, decimal largura, decimal profundidade, decimal valorProduto, int quantidade)
+     public virtual void SetProduto(Produto? produto)
+        {
+            if (produto == null)
+                throw new ArgumentNullException("O campo de produto não pode ser nulo.");
+            Produto = produto;
+        }
+    public virtual void SetValorProduto(decimal valorProduto)
+        {
+            if(valorProduto <= 0)
+            {
+                throw new Exception("O valor do produto não pode ser menor ou igual a zero");
+            }
+            ValorProduto = valorProduto;
+        }
+
+    public virtual void SetColetaMercadoria(ColetaMercadoria? coletaMercadoria)
+        {
+            if (coletaMercadoria == null)
+                throw new ArgumentNullException("O campo de coleta mercadoria não pode ser nulo.");
+            ColetaMercadoria = coletaMercadoria;
+        }
+
+    public virtual void SetDescricao(string? descricao)
+        {
+            if (String.IsNullOrEmpty(descricao))
+                throw new ArgumentNullException("O a descrição não pode ser vazia");
+            if (descricao.Length > 100)
+                throw new ArgumentOutOfRangeException("A descrição nao pode ter mais que 100 caracteres");
+            Descricao = descricao;
+        }
+
+
+     public virtual void SetQuantidade(int quantidade)
+        {
+            if(quantidade <= 0)
+            {
+                throw new Exception("A quantidade não pode ser menor ou igual a zero");
+            }
+            Quantidade = quantidade;
+        }
+
+    public decimal CalcularCustoFrete(FreteOpcoesEnum opcao, decimal altura, decimal largura, decimal profundidade, decimal valorProduto, int quantidade)
 {
     decimal pesoCubado = altura * largura * 300;
-    decimal custoPorPeso;
-    decimal seguro;
+    decimal custoPorPeso = 0;
+    decimal seguro = 0;
 
   switch (opcao)
     {
@@ -61,8 +112,8 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
             throw new ArgumentException("Opção de frete inválida.");
 }
      var frete = pesoCubado * custoPorPeso + seguro;
-    var valorTotal = frete * quantidade;
-    return valorTotal;
+    ValorFrete = frete * quantidade;
+    return ValorFrete;
     }
 }
 
