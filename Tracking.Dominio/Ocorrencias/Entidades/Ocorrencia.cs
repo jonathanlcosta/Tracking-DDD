@@ -24,7 +24,7 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
                 
         }
 
-        public Ocorrencia(string notaFiscal, Cliente cliente, TipoOcorrenciaEnum tipoOcorrencia, Transportadora transportadora,
+        public Ocorrencia(string notaFiscal, Cliente cliente, Transportadora transportadora,
         IList<OcorrenciaColetaMercadoria> ocorrencias, DateTime data)
         {
             SetNotaFiscal(notaFiscal);
