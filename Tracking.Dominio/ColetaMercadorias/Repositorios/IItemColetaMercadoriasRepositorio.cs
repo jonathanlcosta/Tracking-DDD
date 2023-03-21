@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.Generico.Repositorios;
 
-namespace Tracking.Dominio.Ocorrencias.Repositorios
+namespace Tracking.Dominio.ColetaMercadorias.Repositorios
 {
-    public interface IOcorrenciaColetaMercadorias : IGenericoRepositorio<ItemColetaMercadoria>
+    public interface IItemColetaMercadoriasRepositorio : IGenericoRepositorio<ItemColetaMercadoria>
     {
         
     }

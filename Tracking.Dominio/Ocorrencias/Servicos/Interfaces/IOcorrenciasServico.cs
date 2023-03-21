@@ -13,9 +13,9 @@ namespace Tracking.Dominio.Ocorrencias.Servicos.Interfaces
     {
         Ocorrencia Validar(int codigo);
         Ocorrencia Instanciar(string notaFiscal, int codCliente, int codTransportadora,
-         DateTime data);
+         DateTime data, string observacao);
         Ocorrencia Atualizar(int Id, string notaFiscal, int? codCliente, int? codTransportadora,
-         DateTime data);
+         DateTime data, string observacao);
         TipoOcorrenciaEnum GetTipoOcorrencia(Ocorrencia ocorrencia);
         Ocorrencia Inserir(Ocorrencia ocorrencia);
         void AdicionarOcorrencia(Ocorrencia ocorrencia, OcorrenciaColetaMercadoria? itemOcorrencia);

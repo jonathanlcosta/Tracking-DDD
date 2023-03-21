@@ -44,7 +44,7 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
         }
 
         public Ocorrencia Atualizar(int id, string notaFiscal, int? codCliente, int? codTransportadora,
-         DateTime data)
+         DateTime data, string observacao)
         {
             Cliente cliente = null;
             if (codCliente.HasValue && codCliente != 0)
@@ -64,6 +64,7 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
             if (transportadora != null && transportadora.CodigoTransportadora != ocorrencia.Transportadora!.CodigoTransportadora) ocorrencia.SetTransportadora(transportadora);
             if (!String.IsNullOrEmpty(notaFiscal)) ocorrencia.SetNotaFiscal(notaFiscal);
             if (data == DateTime.MinValue) ocorrencia.SetData(data);
+            ocorrencia.SetObservacao(observacao);
             return ocorrencia;
         }
 
@@ -83,12 +84,12 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
         }
 
         public Ocorrencia Instanciar(string notaFiscal, int codCliente, int codTransportadora,
-         DateTime data)
+         DateTime data, string observacao)
         {
            Cliente cliente = clientesServico.Validar(codCliente);
             Transportadora transportadora = transportadorasServico.ValidarTransportadora(codTransportadora);
             return new Ocorrencia(notaFiscal, cliente, transportadora,
-            new List<OcorrenciaColetaMercadoria>(), data);
+            new List<OcorrenciaColetaMercadoria>(), data, observacao);
         }
 
         public Ocorrencia Validar(int codigo)

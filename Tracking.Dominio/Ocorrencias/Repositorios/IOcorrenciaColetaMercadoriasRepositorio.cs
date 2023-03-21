@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.Generico.Repositorios;
+using Tracking.Dominio.Ocorrencias.Entidades;
 
-namespace Tracking.Dominio.ColetaMercadorias.Repositorios
+namespace Tracking.Dominio.Ocorrencias.Repositorios
 {
-    public interface IItemColetaMercadorias : IGenericoRepositorio<ItemColetaMercadoria>
+    public interface IOcorrenciaColetaMercadoriasRepositorio : IGenericoRepositorio<OcorrenciaColetaMercadoria>
     {
         
     }

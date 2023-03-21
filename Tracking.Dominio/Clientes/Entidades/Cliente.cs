@@ -23,7 +23,7 @@ namespace Tracking.Dominio.Clientes.Entidades
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
 
-    // public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
+    public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
 
    protected Cliente()
         { }

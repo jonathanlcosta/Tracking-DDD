@@ -25,7 +25,7 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
         }
 
         public Ocorrencia(string notaFiscal, Cliente cliente, Transportadora transportadora,
-        IList<OcorrenciaColetaMercadoria> ocorrencias, DateTime data)
+        IList<OcorrenciaColetaMercadoria> ocorrencias, DateTime data, string observacao)
         {
             SetNotaFiscal(notaFiscal);
             SetCliente(cliente);
@@ -33,6 +33,7 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
             SetTransportadora(transportadora);
             SetOcorrencias(ocorrencias);
             SetData(data);
+            SetObservacao(observacao);
 
         }
         public virtual void SetNotaFiscal(string notaFiscal)
@@ -82,6 +83,11 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
                 throw new ArgumentNullException("A data não foi informada.");
             }
             Data = data;
+        }
+
+        public virtual void SetObservacao(string observacao)
+        {
+            Observacao = observacao;
         }
 
     }
