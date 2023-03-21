@@ -6,6 +6,7 @@ using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.Clientes.Servicos.Interfaces;
 using Tracking.Dominio.Ocorrencias.Entidades;
 using Tracking.Dominio.Ocorrencias.Enumeradores;
+using Tracking.Dominio.Ocorrencias.Repositorios;
 using Tracking.Dominio.Ocorrencias.Servicos.Interfaces;
 using Tracking.Dominio.Transportadoras.Entidades;
 using Tracking.Dominio.Transportadoras.Servicos.Interfaces;
@@ -16,19 +17,30 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
     {
         private readonly IClientesServico clientesServico;
         private readonly ITransportadorasServico transportadorasServico;
-        public OcorrenciasServico(IClientesServico clientesServico, ITransportadorasServico transportadorasServico )
+        private readonly IOcorrenciasRepositorio ocorrenciasRepositorio;
+        public OcorrenciasServico(IClientesServico clientesServico, ITransportadorasServico transportadorasServico,
+       IOcorrenciasRepositorio ocorrenciasRepositorio )
         {
          this.clientesServico = clientesServico;
+         this.ocorrenciasRepositorio = ocorrenciasRepositorio;
          this.transportadorasServico = transportadorasServico;   
         }
-        public void AdicionarItem(Ocorrencia ocorrencia, OcorrenciaColetaMercadoria? itemOcorrencia)
+        public void AdicionarOcorrencia(Ocorrencia ocorrencia, OcorrenciaColetaMercadoria? itemOcorrencia)
         {
-            throw new NotImplementedException();
+           if (itemOcorrencia == null)
+                throw new ArgumentNullException("O item da ocorrência não pode ser nulo.");
+            ocorrencia.Ocorrencias!.Add(itemOcorrencia);
         }
 
-        public void AdicionarItem(Ocorrencia ocorrencia, IList<OcorrenciaColetaMercadoria> itensOcorrencia)
+        public void AdicionarOcorrencia(Ocorrencia ocorrencia, IList<OcorrenciaColetaMercadoria> itensOcorrencia)
         {
-            throw new NotImplementedException();
+           if(itensOcorrencia != null)
+            {
+                foreach(var item in itensOcorrencia)
+                {
+                    ocorrencia.Ocorrencias!.Add(item!);
+                }
+            }
         }
 
         public Ocorrencia Atualizar(int id, string notaFiscal, int? codCliente, int? codTransportadora,
@@ -57,27 +69,38 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
 
         public void Excluir(Ocorrencia ocorrencia)
         {
-            throw new NotImplementedException();
+            ocorrenciasRepositorio.Excluir(ocorrencia);
         }
 
         public TipoOcorrenciaEnum GetTipoOcorrencia(Ocorrencia ocorrencia)
         {
-            throw new NotImplementedException();
+            return ocorrencia.Tipo;
         }
 
         public Ocorrencia Inserir(Ocorrencia ocorrencia)
         {
-            throw new NotImplementedException();
+            return ocorrenciasRepositorio.Inserir(ocorrencia);
         }
 
-        public Ocorrencia Instanciar(string notaFiscal, Cliente cliente, Transportadora transportadora, IList<OcorrenciaColetaMercadoria> ocorrencias, DateTime data)
+        public Ocorrencia Instanciar(string notaFiscal, int codCliente, int codTransportadora,
+         DateTime data)
         {
-            throw new NotImplementedException();
+           Cliente cliente = clientesServico.Validar(codCliente);
+            Transportadora transportadora = transportadorasServico.ValidarTransportadora(codTransportadora);
+            return new Ocorrencia(notaFiscal, cliente, transportadora,
+            new List<OcorrenciaColetaMercadoria>(), data);
         }
 
         public Ocorrencia Validar(int codigo)
         {
-            throw new NotImplementedException();
+            if (codigo == 0)
+                throw new ArgumentException("Insira um código de ocorrência valido.");
+
+           Ocorrencia ocorrencia = ocorrenciasRepositorio.Recuperar(codigo);
+
+            if (ocorrencia == null)
+                throw new ArgumentNullException("Ocorrência não encontrada.");
+            return ocorrencia;
         }
     }
 }

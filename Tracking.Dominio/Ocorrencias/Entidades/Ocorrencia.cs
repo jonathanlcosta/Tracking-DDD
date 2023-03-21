@@ -14,7 +14,7 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
          public virtual int Id { get; set; }
         public virtual string? NotaFiscal { get; set; }
         public virtual Cliente? Cliente { get; set; }
-        public virtual TipoOcorrenciaEnum? Tipo { get; set; }
+        public virtual TipoOcorrenciaEnum Tipo { get; set; }
         public virtual Transportadora? Transportadora { get; set; }
         public virtual string? Observacao { get; set; }
         public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; set; }
