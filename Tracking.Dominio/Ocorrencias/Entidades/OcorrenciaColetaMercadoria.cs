@@ -8,9 +8,9 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
 {
     public class OcorrenciaColetaMercadoria
     {
-    public virtual int Id { get; set; }
-    public virtual ColetaMercadoria? ColetaMercadoria { get; set; }
-    public virtual Ocorrencia? Ocorrencia { get; set; }
+    public virtual int Id { get; protected set; }
+    public virtual ColetaMercadoria? ColetaMercadoria { get; protected set; }
+    public virtual Ocorrencia? Ocorrencia { get; protected set; }
     protected OcorrenciaColetaMercadoria()
     {
         

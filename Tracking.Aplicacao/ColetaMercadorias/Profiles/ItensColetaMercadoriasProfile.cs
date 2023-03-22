@@ -14,8 +14,6 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Profiles
         public ItensColetaMercadoriasProfile()
         {
             CreateMap<ItemColetaMercadoria, ItemColetaMercadoriaResponse>();
-            CreateMap<ItemColetaMercadoriaListarRequest, ItemColetaMercadoria>();
-            CreateMap<ItemColetaMercadoriaEditarRequest, ItemColetaMercadoria>();
             CreateMap<ItemColetaMercadoriaInserirRequest, ItemColetaMercadoria>();
         }
     }

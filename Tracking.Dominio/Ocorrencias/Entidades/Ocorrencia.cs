@@ -11,14 +11,14 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
 {
     public class Ocorrencia
     {
-         public virtual int Id { get; set; }
-        public virtual string? NotaFiscal { get; set; }
-        public virtual Cliente? Cliente { get; set; }
-        public virtual TipoOcorrenciaEnum Tipo { get; set; }
-        public virtual Transportadora? Transportadora { get; set; }
-        public virtual string? Observacao { get; set; }
-        public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; set; }
-        public virtual DateTime Data { get; set; }
+        public virtual int Id { get; protected set; }
+        public virtual string? NotaFiscal { get; protected set; }
+        public virtual Cliente? Cliente { get; protected set; }
+        public virtual TipoOcorrenciaEnum Tipo { get; protected set; }
+        public virtual Transportadora? Transportadora { get; protected set; }
+        public virtual string? Observacao { get; protected set; }
+        public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; protected set; }
+        public virtual DateTime Data { get; protected set; }
         protected Ocorrencia()
         {
                 
