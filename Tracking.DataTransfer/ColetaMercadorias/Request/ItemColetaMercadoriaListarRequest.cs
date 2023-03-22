@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Tracking.DataTransfer.ColetaMercadorias.Request
 {
-    public class ItemColetaMercadoriaInserirRequest
+    public class ItemColetaMercadoriaListarRequest
     {
+    public int Id { get; set; }
     public int IdColetaMercadoria { get; set; }
     public int IdProduto { get; set; }
     public string? Descricao { get; set; }
