@@ -12,9 +12,9 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
         {
             this.produtosServico = produtosServico;
         }
-        public ItemColetaMercadoria Instanciar(Produto produto, FreteOpcoesEnum opcao, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete)
+        public ItemColetaMercadoria Instanciar(Produto produto, FreteOpcoesEnum opcaoFrete, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete)
         {
-            return new ItemColetaMercadoria(produto, opcao, quantidade, coletaMercadoria, descricao, valorProduto, descricao, dimensoes, ValorFrete );
+            return new ItemColetaMercadoria(produto, opcaoFrete, quantidade, coletaMercadoria, descricao, valorProduto, descricao, dimensoes, ValorFrete );
         }
     }
 }
