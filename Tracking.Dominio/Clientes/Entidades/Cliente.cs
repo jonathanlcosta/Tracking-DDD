@@ -74,7 +74,7 @@ namespace Tracking.Dominio.Clientes.Entidades
             {
                 throw new Exception("Email com formato invalido");
             }
-            this.Email = email;
+            Email = email;
         }
 
         public virtual void SetTipoCliente(TipoPessoa tipoPessoa)

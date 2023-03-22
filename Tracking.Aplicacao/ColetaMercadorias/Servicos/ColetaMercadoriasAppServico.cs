@@ -13,7 +13,6 @@ using Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces;
 using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Entidades;
 using Tracking.Dominio.Produtos.Servicos.Interfaces;
-using Tracking.Dominio.Transportadoras.Servicos.Interfaces;
 using ISession = NHibernate.ISession;
 namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
 {
