@@ -39,9 +39,26 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
             this.session = session;
 
         }
-        public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest coletaMercadoriaEditarRequest)
+        public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest request)
         {
-            throw new NotImplementedException();
+
+           ColetaMercadoria coleta = coletaMercadoriasServico.Validar(codigoColeta);
+            coleta = coletaMercadoriasServico.Atualizar(codigoColeta, request.NotaFiscal,request.PedidoCompra, request.IdCliente,
+            request.IdTransportadora, request.NomeFantasia);
+            var transacao = session.BeginTransaction();
+            try
+            {
+                coleta = coletaMercadoriasRepositorio.Editar(coleta);
+                if(transacao.IsActive)
+                    transacao.Commit();
+                return mapper.Map<ColetaMercadoriaResponse>(coleta);;
+            }
+            catch
+            {
+                if(transacao.IsActive)
+                    transacao.Rollback();
+                throw;
+            }
         }
 
         public void Excluir(int codigo)
@@ -95,9 +112,37 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
             }
         }
 
-        public PaginacaoConsulta<ColetaMercadoriaResponse> Listar(int? pagina, int quantidade, ColetaMercadoriaListarRequest coletaMercadoriaListarRequest)
+        public PaginacaoConsulta<ColetaMercadoriaResponse> Listar(int? pagina, int quantidade, ColetaMercadoriaListarRequest coletaListarRequest)
         {
-            throw new NotImplementedException();
+             if (pagina.Value <= 0) throw new Exception("Pagina não especificada");
+
+            IQueryable<ColetaMercadoria> query = coletaMercadoriasRepositorio.Query();
+            if (coletaListarRequest is null)
+                throw new Exception();
+
+            if (!string.IsNullOrEmpty(coletaListarRequest.NotaFiscal))
+                query = query.Where(p => p.NotaFiscal.Contains(coletaListarRequest.NotaFiscal));
+
+            if (!string.IsNullOrEmpty(coletaListarRequest.PedidoCompra))
+                query = query.Where(p => p.PedidoCompra.Contains(coletaListarRequest.PedidoCompra));
+
+            if (!string.IsNullOrEmpty(coletaListarRequest.NomeFantasia))
+                query = query.Where(p => p.NomeFantasia.Contains(coletaListarRequest.NomeFantasia));
+
+          if (coletaListarRequest.IdCliente.HasValue && coletaListarRequest.IdCliente.Value != 0)
+            {
+                query = query.Where(x => x.Cliente!.Id == coletaListarRequest.IdCliente.Value);
+            }
+
+            if (coletaListarRequest.IdTransportadora.HasValue && coletaListarRequest.IdTransportadora.Value != 0)
+            {
+                query = query.Where(x => x.Transportadora!.CodigoTransportadora == coletaListarRequest.IdTransportadora.Value);
+            }
+
+            PaginacaoConsulta<ColetaMercadoria> coletas = coletaMercadoriasRepositorio.Listar(query, pagina, quantidade);
+            PaginacaoConsulta<ColetaMercadoriaResponse> response;
+            response = mapper.Map<PaginacaoConsulta<ColetaMercadoriaResponse>>(coletas);
+            return response;
         }
 
         public ColetaMercadoriaResponse Recuperar(int codigoColeta)
