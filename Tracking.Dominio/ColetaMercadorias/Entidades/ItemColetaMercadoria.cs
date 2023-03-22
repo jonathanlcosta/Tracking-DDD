@@ -12,7 +12,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     public virtual int Id { get; protected set; }
     public virtual ColetaMercadoria? ColetaMercadoria { get; protected set; }
     public virtual Produto? Produto { get; protected set; }
-    public virtual FreteOpcoesEnum? TipoFrete  { get; protected set; }
     public virtual string? Descricao { get; protected set; }
     public virtual int Quantidade { get; protected set; }
     public virtual decimal ValorProduto { get; protected set; }
@@ -25,7 +24,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         
     }
 
-    public ItemColetaMercadoria(Produto produto, FreteOpcoesEnum tipoFrete, int quantidade, ColetaMercadoria coletaMercadoria, string Descricao,
+    public ItemColetaMercadoria(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, string Descricao,
     decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete )
     {
         SetProduto(produto);
@@ -34,7 +33,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         SetDescricao(descricao);
         SetValorProduto(valorProduto);
         SetFrete(ValorFrete);
-        SetTipoFrete(tipoFrete);
     }
 
      public virtual void SetProduto(Produto? produto)
@@ -83,10 +81,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         ValorFrete = frete;
     }
 
-    public virtual void SetTipoFrete(FreteOpcoesEnum? tipoFrete)
-    {
-        TipoFrete = tipoFrete;
-    }
 }
 
 }

@@ -16,7 +16,6 @@ namespace Tracking.Infra.ColetaMercadorias.Mapeamentos
             Table("coletas_produtos");
             Id(x => x.Id, "id").GeneratedBy.Native();
             Map(x => x.ValorProduto, "valor_produto");
-            Map(x=>x.TipoFrete).CustomType<FreteOpcoesEnum>().Column("situacao");
             Map(x => x.Descricao, "descricao_produto");
             Map(x => x.Dimensoes, "dimensoes_produto");
             Map(x => x.Quantidade, "quantidade");
