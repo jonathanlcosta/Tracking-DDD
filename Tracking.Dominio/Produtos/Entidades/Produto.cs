@@ -24,7 +24,7 @@ namespace Tracking.Dominio.Produtos.Entidades
         SetAltura(altura);
         SetLargura(largura);
         SetComprimento(comprimento);
-        
+        SetSituacaoProduto(SituacaoProdutoEnum.Ativo);
     }
 
     public Produto()
