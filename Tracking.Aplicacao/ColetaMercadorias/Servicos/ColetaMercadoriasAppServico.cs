@@ -10,6 +10,8 @@ using Tracking.Dominio.Clientes.Servicos.Interfaces;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Repositorios;
 using Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces;
+using Tracking.Dominio.Ocorrencias.Entidades;
+using Tracking.Dominio.Ocorrencias.Servicos.Interfaces;
 using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Entidades;
 using Tracking.Dominio.Produtos.Servicos.Interfaces;
@@ -25,9 +27,11 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
         private readonly ISession session;
         private readonly IClientesServico clientesServico;
         private readonly IProdutosServico produtosServico;
+        private readonly IOcorrenciasServico ocorrenciasServico;
+        private readonly IOcorrenciaColetaMercadoriasServico ocorrenciaColetaMercadoriasServico;
         public ColetaMercadoriasAppServico(IColetaMercadoriasServico coletaMercadoriasServico, IColetaMercadoriasRepositorio coletaMercadoriasRepositorio,
          IItemColetaMercadoriasServico itemColetaMercadoriasServico, IClientesServico clientesServico,
-         IProdutosServico produtosServico, IMapper mapper, ISession session )
+         IProdutosServico produtosServico, IMapper mapper, ISession session, IOcorrenciasServico ocorrenciasServico )
         {
             this.coletaMercadoriasRepositorio = coletaMercadoriasRepositorio;
             this.coletaMercadoriasServico = coletaMercadoriasServico;
@@ -36,6 +40,7 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
             this.produtosServico = produtosServico;
             this.mapper = mapper;
             this.session = session;
+            this.ocorrenciasServico = ocorrenciasServico;
 
         }
         public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest request)
@@ -93,7 +98,17 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
                     item.ValorProduto, item.Descricao, item.Dimensoes, item.ValorFrete));
                 });
 
+                var ocorrencias = new List<OcorrenciaColetaMercadoria>();
+
+                request.Ocorrencias!.ToList().ForEach(item =>{
+                ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
+                Ocorrencia? ocorrencia = ocorrenciasServico.Validar(item.IdOcorrencia);
+                ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
+                }
+                );
+
                 coletaMercadoriasServico.AdicionarItem(coletaMercadoria, itensProdutos);
+                coletaMercadoriasServico.AdicionarItem(coletaMercadoria, ocorrencias);
 
                 var transacao = session.BeginTransaction();
             try
