@@ -19,16 +19,19 @@ namespace Tracking.Dominio.Clientes.Entidades
     public virtual string? Endereco { get; protected set; }
    public virtual string? Cidade { get; protected set; }
    public virtual string? Cep { get; protected set; }
-   public virtual string? Uf { get; protected set; }
+   public virtual UfEnum? Uf { get; protected set; }
+   public virtual RegiaoEnum? Regiao { get; protected set; }
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
+     public virtual decimal CustoPorPeso { get; set; }
+    public virtual decimal Seguro { get; set; }
 
     public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
 
    protected Cliente()
         { }
 
-        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, string uf, string telefone)
+        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, UfEnum uf, string telefone, RegiaoEnum regiao)
         {
             SetNome(nome);
             SetEmail(email);
@@ -37,18 +40,22 @@ namespace Tracking.Dominio.Clientes.Entidades
             SetCidade(cidade);
             SetEndereco(endereco);
             SetUf(uf);
+            SetCustoPorPeso(uf, regiao);
+            SetRegiao(regiao);
+            SetSeguro(uf, regiao);
+
 
         }
 
         // Construtor Pessoa Fisica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, UfEnum uf, string cpf, RegiaoEnum regiao) : this(nome, email, endereco, cidade, cep, uf, telefone, regiao)
         {
             SetTipoCliente(TipoPessoa.Fisica);
             SetCPF(cpf);
         }
 
         // Construtor Pessoa Jurídica
-        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cnpj, string ie, string razaoSocial) : this(nome, email, endereco, cidade, cep, uf, telefone)
+        public Cliente(string? nome, string? email, string endereco, string cidade, string telefone, string cep, UfEnum uf, string cnpj, string ie, string razaoSocial, RegiaoEnum regiao) : this(nome, email, endereco, cidade, cep, uf, telefone, regiao)
         {
             SetTipoCliente(TipoPessoa.Juriridica);
             SetCNPJ(cnpj);
@@ -166,14 +173,49 @@ namespace Tracking.Dominio.Clientes.Entidades
                 throw new ArgumentException($"O campo {nameof(cidade)} não pode ser vazio.");
                 Cidade = cidade;
     }
-    public virtual void SetUf(string uf)
+    public virtual void SetUf(UfEnum? uf)
         {
-            if (String.IsNullOrEmpty(uf))
-                throw new ArgumentNullException("O estado não pode ser vazio");
-            if (uf.Length != 2)
-                throw new ArgumentOutOfRangeException("O estado deve possuir dois caracteres");
-
             Uf = uf;
+        }
+
+    public virtual void SetRegiao(RegiaoEnum? regiao)
+        {
+            Regiao = regiao;
+        }
+    public virtual void SetCustoPorPeso(UfEnum uf, RegiaoEnum regiao)
+    {
+            if(uf == UfEnum.BA && regiao == RegiaoEnum.Capital )
+                CustoPorPeso = 2.50m;
+
+            if(uf == UfEnum.BA  && regiao == RegiaoEnum.Interior )
+                CustoPorPeso = 2.60m;
+
+            if(uf == UfEnum.ES && regiao == RegiaoEnum.Capital )
+                CustoPorPeso = 1.80m;
+
+            if(uf == UfEnum.ES && regiao == RegiaoEnum.Interior )
+                CustoPorPeso = 2.10m;  
+
+             if(uf == UfEnum.RJ && regiao == RegiaoEnum.Capital )
+                CustoPorPeso = 2.30m;  
+
+            if(uf == UfEnum.RJ && regiao == RegiaoEnum.Interior )
+                CustoPorPeso = 2.50m;
+
+             Uf = uf;
+            Regiao = regiao;
+    }
+
+    public virtual void SetSeguro(UfEnum uf, RegiaoEnum regiao)
+        {
+            if(uf == UfEnum.RJ && regiao == RegiaoEnum.Capital)
+            {
+                Seguro = 0.008m;
+            }
+
+            else {
+                Seguro = 0.005m;
+            }
         }
 
    

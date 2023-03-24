@@ -33,7 +33,7 @@ namespace Tracking.Aplicacao.Clientes.Servicos
         {
             Cliente pessoa = pessoaFisicasServico.Validar(codigo);
             pessoa = pessoaFisicasServico.Atualizar(codigo, pessoaFisicasEditarRequest.Nome,pessoaFisicasEditarRequest.Email, pessoaFisicasEditarRequest.Endereco,
-            pessoaFisicasEditarRequest.Cidade, pessoaFisicasEditarRequest.Telefone, pessoaFisicasEditarRequest.Cep, pessoaFisicasEditarRequest.Uf, pessoaFisicasEditarRequest.Cpf);
+            pessoaFisicasEditarRequest.Cidade, pessoaFisicasEditarRequest.Telefone, pessoaFisicasEditarRequest.Cep, pessoaFisicasEditarRequest.Uf, pessoaFisicasEditarRequest.Cpf, pessoaFisicasEditarRequest.Regiao);
             var transacao = session.BeginTransaction();
             try
             {
@@ -78,7 +78,7 @@ namespace Tracking.Aplicacao.Clientes.Servicos
                                     pessoaFisicasCadastroRequest.Cidade,
                                     pessoaFisicasCadastroRequest.Telefone,
                                     pessoaFisicasCadastroRequest.Cep, pessoaFisicasCadastroRequest.Uf,
-                                    pessoaFisicasCadastroRequest.Cpf);
+                                    pessoaFisicasCadastroRequest.Cpf, pessoaFisicasCadastroRequest.Regiao);
             var transacao = session.BeginTransaction();
             try
             {
@@ -117,8 +117,10 @@ namespace Tracking.Aplicacao.Clientes.Servicos
 
              if (!String.IsNullOrEmpty(pessoaFisicasListarRequest.Endereco))
                 query = query.Where(p => p.Endereco.Contains(pessoaFisicasListarRequest.Endereco));
-            if (!String.IsNullOrEmpty(pessoaFisicasListarRequest.Uf))
-                query = query.Where(p => p.Uf.Contains(pessoaFisicasListarRequest.Uf));
+           if (pessoaFisicasListarRequest.Uf.HasValue)
+                query = query.Where(p => p.Uf == pessoaFisicasListarRequest.Uf.Value);
+            if (pessoaFisicasListarRequest.Regiao.HasValue)
+                query = query.Where(p => p.Regiao == pessoaFisicasListarRequest.Regiao.Value);
             if (!String.IsNullOrEmpty(pessoaFisicasListarRequest.Cep))
                 query = query.Where(p => p.Cep.Contains(pessoaFisicasListarRequest.Cep));
             if (!String.IsNullOrEmpty(pessoaFisicasListarRequest.Telefone))

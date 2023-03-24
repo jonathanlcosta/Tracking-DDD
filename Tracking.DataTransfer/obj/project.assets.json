@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "Tracking.Dominio/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Tracking.Dominio.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tracking.Dominio.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Tracking.Dominio/1.0.0": {
+      "type": "project",
+      "path": "../Tracking.Dominio/Tracking.Dominio.csproj",
+      "msbuildProject": "../Tracking.Dominio/Tracking.Dominio.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "Tracking.Dominio >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\nickc\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\nickc\\Downloads\\Tracking\\Tracking.Dominio\\Tracking.Dominio.csproj": {
+              "projectPath": "C:\\Users\\nickc\\Downloads\\Tracking\\Tracking.Dominio\\Tracking.Dominio.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

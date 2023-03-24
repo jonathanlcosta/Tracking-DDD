@@ -219,7 +219,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\nickc\\Downloads\\Tracking\\Tracking.Dominio\\Tracking.Dominio.csproj": {
+                "projectPath": "C:\\Users\\nickc\\Downloads\\Tracking\\Tracking.Dominio\\Tracking.Dominio.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

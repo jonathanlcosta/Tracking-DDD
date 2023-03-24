@@ -18,7 +18,7 @@ namespace Tracking.Dominio.Clientes.Servicos
             this.clientesRepositorio = clientesRepositorio;
         }
 
-        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
+        public Cliente Atualizar(int codigo, string? nome, string? email, string endereco, string cidade, string telefone, string cep, UfEnum uf, string cpf, RegiaoEnum regiao)
         {
             Cliente cliente = Validar(codigo);
 
@@ -29,7 +29,8 @@ namespace Tracking.Dominio.Clientes.Servicos
             if (!String.IsNullOrEmpty(telefone)) cliente.SetTelefone(telefone);
             if (!String.IsNullOrEmpty(cidade)) cliente.SetCidade(cidade);
             if (!String.IsNullOrEmpty(cep)) cliente.SetCep(cep);
-            if (!String.IsNullOrEmpty(uf)) cliente.SetUf(uf);
+            cliente.SetUf(uf);
+            cliente.SetRegiao(regiao);
 
             return cliente;
         }
@@ -39,9 +40,9 @@ namespace Tracking.Dominio.Clientes.Servicos
             return clientesRepositorio.Inserir(cliente);
         }
 
-        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, string uf, string cpf)
+        public Cliente Instanciar(string? nome, string? email, string endereco, string cidade, string telefone, string cep, UfEnum uf, string cpf, RegiaoEnum regiao)
         {
-            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cpf);
+            return new Cliente(nome, email, endereco, cidade, telefone, cep, uf, cpf, regiao);
         }
 
         public Cliente Validar(int codigo)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tracking.Dominio.Clientes.Enumeradores;
 
 namespace Tracking.DataTransfer.Clientes.PessoaFisicas.Request
 {
@@ -14,6 +15,7 @@ namespace Tracking.DataTransfer.Clientes.PessoaFisicas.Request
     public string? Endereco { get; set; }
    public string? Cidade { get; set; }
    public string? Cep { get; set; }
-   public string? Uf { get; set; }
+   public UfEnum Uf { get; set; }
+   public RegiaoEnum Regiao { get; set; }
     }
 }
