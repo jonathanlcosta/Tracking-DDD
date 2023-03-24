@@ -23,8 +23,8 @@ namespace Tracking.Dominio.Clientes.Entidades
    public virtual RegiaoEnum? Regiao { get; protected set; }
    public virtual string? IE { get; protected set; }
     public virtual string? RazaoSocial { get; protected set; }
-     public virtual decimal CustoPorPeso { get; set; }
-    public virtual decimal Seguro { get; set; }
+     public virtual decimal CustoPorPeso { get; protected set; }
+    public virtual decimal Seguro { get; protected set; }
 
     public virtual IList<ColetaMercadoria>? ColetasMercadoria { get; protected set; }
 
