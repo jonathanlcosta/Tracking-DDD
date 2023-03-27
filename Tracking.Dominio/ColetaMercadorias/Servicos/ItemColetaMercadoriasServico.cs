@@ -16,5 +16,14 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
         {
             return new ItemColetaMercadoria(produto, quantidade, coletaMercadoria, descricao, valorProduto, descricao, dimensoes, ValorFrete );
         }
+
+         public void CalcularFrete(decimal altura, decimal largura, decimal custoPorPeso, decimal seguro, decimal valorFrete, int quantidade)
+    {
+        var pesoCubado = altura * largura * 300;
+        valorFrete = pesoCubado * custoPorPeso + seguro;
+        var valorTotal = valorFrete * quantidade;
+
+    }
+
     }
 }

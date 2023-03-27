@@ -6,6 +6,7 @@ using AutoMapper;
 using Tracking.Aplicacao.ColetaMercadorias.Servicos.Interfaces;
 using Tracking.DataTransfer.ColetaMercadorias.Request;
 using Tracking.DataTransfer.ColetaMercadorias.Response;
+using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.Clientes.Servicos.Interfaces;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Repositorios;
@@ -31,7 +32,8 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
         private readonly IOcorrenciaColetaMercadoriasServico ocorrenciaColetaMercadoriasServico;
         public ColetaMercadoriasAppServico(IColetaMercadoriasServico coletaMercadoriasServico, IColetaMercadoriasRepositorio coletaMercadoriasRepositorio,
          IItemColetaMercadoriasServico itemColetaMercadoriasServico, IClientesServico clientesServico,
-         IProdutosServico produtosServico, IMapper mapper, ISession session, IOcorrenciasServico ocorrenciasServico )
+         IProdutosServico produtosServico, IMapper mapper, ISession session, IOcorrenciasServico ocorrenciasServico,
+         IOcorrenciaColetaMercadoriasServico ocorrenciaColetaMercadoriasServico )
         {
             this.coletaMercadoriasRepositorio = coletaMercadoriasRepositorio;
             this.coletaMercadoriasServico = coletaMercadoriasServico;
@@ -41,6 +43,7 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
             this.mapper = mapper;
             this.session = session;
             this.ocorrenciasServico = ocorrenciasServico;
+            this.ocorrenciaColetaMercadoriasServico = ocorrenciaColetaMercadoriasServico;
 
         }
         public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest request)
@@ -94,6 +97,8 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
                 {
                     Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
                     ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
+                    Cliente? cliente = clientesServico.Validar(coletaMercadoria.Id);
+                    itemColetaMercadoriasServico.CalcularFrete(produto.Altura, produto.Largura, cliente.CustoPorPeso,cliente.Seguro,item.ValorFrete, item.Quantidade);
                     itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coleta, 
                     item.ValorProduto, item.Descricao, item.Dimensoes, item.ValorFrete));
                 });
