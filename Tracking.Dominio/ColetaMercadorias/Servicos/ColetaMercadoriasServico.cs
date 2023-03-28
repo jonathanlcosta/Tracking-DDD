@@ -90,12 +90,12 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
         public ColetaMercadoria Validar(int codigo)
         {
            if (codigo == 0)
-                throw new ArgumentException("Insira um código de compra valido.");
+                throw new ArgumentException("Insira um código de coleta valido.");
 
             ColetaMercadoria coletaMercadoria = coletaMercadoriasRepositorio.Recuperar(codigo);
 
             if (coletaMercadoria == null)
-                throw new ArgumentNullException("Compra não encontrada.");
+                throw new ArgumentNullException("Coleta não encontrada.");
             return coletaMercadoria;
         }
     }

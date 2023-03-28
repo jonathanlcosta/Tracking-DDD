@@ -97,13 +97,12 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
                 {
                     Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
                     Cliente? cliente = clientesServico.Validar(request.IdCliente);
-                    itemColetaMercadoriasServico.CalcularFrete(produto.Altura, produto.Largura, cliente.CustoPorPeso,cliente.Seguro,item.ValorFrete, item.Quantidade);
+                    var frete = itemColetaMercadoriasServico.CalcularFrete(produto, cliente, item.Quantidade);
                     itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coletaMercadoria, 
-                    item.ValorProduto, item.Descricao, item.Dimensoes, item.ValorFrete));
+                    item.ValorProduto, item.Descricao, item.Dimensoes, frete));
                 });
 
                 coletaMercadoriasServico.AdicionarItem(coletaMercadoria, itensProdutos);
-                // coletaMercadoriasServico.AdicionarItem(coletaMercadoria, ocorrencias);
 
                 var transacao = session.BeginTransaction();
             try

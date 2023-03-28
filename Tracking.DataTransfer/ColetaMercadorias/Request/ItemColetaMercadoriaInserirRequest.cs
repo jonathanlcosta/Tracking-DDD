@@ -12,6 +12,5 @@ namespace Tracking.DataTransfer.ColetaMercadorias.Request
     public int Quantidade { get; set; }
     public decimal ValorProduto { get; set; }
     public decimal Dimensoes { get; set; }
-    public decimal ValorFrete { get; set; }
     }
 }

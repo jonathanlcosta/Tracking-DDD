@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tracking.Dominio.Clientes.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Enumeradores;
 using Tracking.Dominio.Produtos.Entidades;
@@ -12,6 +13,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces
     {
         ItemColetaMercadoria Instanciar(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete);
     
-     void CalcularFrete(decimal altura, decimal largura, decimal custoPorPeso, decimal seguro, decimal valorFrete, int quantidade);
+     decimal CalcularFrete(Produto produto, Cliente cliente, int quantidade);
     }
 }
