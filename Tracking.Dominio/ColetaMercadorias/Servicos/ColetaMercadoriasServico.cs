@@ -43,17 +43,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
             }
         }
 
-        public void AdicionarItem(ColetaMercadoria coletaMercadoria, IList<OcorrenciaColetaMercadoria> itensOcorrenciaColetaMercadoria)
-        {
-           if(itensOcorrenciaColetaMercadoria != null)
-            {
-                foreach(var item in itensOcorrenciaColetaMercadoria)
-                {
-                    coletaMercadoria.Ocorrencias!.Add(item!);
-                }
-            }
-        }
-
         public ColetaMercadoria Atualizar(int codigo, string notaFiscal, string pedidoCompra, int? codCliente, int? codTransportadora, string nomeFantasia)
         {
             Cliente? cliente = null;
@@ -95,7 +84,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
 
 
             return new ColetaMercadoria(notaFiscal, pedidoCompra, cliente, transportadora, 
-            nomeFantasia, new List<ItemColetaMercadoria>(), new List<OcorrenciaColetaMercadoria>());
+            nomeFantasia, new List<ItemColetaMercadoria>());
         }
 
         public ColetaMercadoria Validar(int codigo)

@@ -102,15 +102,6 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
                     item.ValorProduto, item.Descricao, item.Dimensoes, item.ValorFrete));
                 });
 
-                // var ocorrencias = new List<OcorrenciaColetaMercadoria>();
-
-                // request.Ocorrencias!.ToList().ForEach(item =>{
-                // ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
-                // Ocorrencia? ocorrencia = ocorrenciasServico.Validar(item.IdOcorrencia);
-                // ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
-                // }
-                // );
-
                 coletaMercadoriasServico.AdicionarItem(coletaMercadoria, itensProdutos);
                 // coletaMercadoriasServico.AdicionarItem(coletaMercadoria, ocorrencias);
 

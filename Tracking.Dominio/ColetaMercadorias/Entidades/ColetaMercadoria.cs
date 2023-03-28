@@ -20,7 +20,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     public virtual string? NomeFantasia { get; protected set; }
     public virtual SituacaoColetaEnum SituacaoColeta { get; protected set; }
     public virtual IList<ItemColetaMercadoria>? ItensColetados { get; protected set; }
-    public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; protected set; }
 
     protected ColetaMercadoria()
     {
@@ -28,7 +27,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     }
 
     public ColetaMercadoria(string notaFiscal, string pedidoCompra, Cliente cliente, Transportadora transportadora,
-     string nomeFantasia, IList<ItemColetaMercadoria> itensColetados, IList<OcorrenciaColetaMercadoria> ocorrencias  )
+     string nomeFantasia, IList<ItemColetaMercadoria> itensColetados)
     {
         SetSituacaoColeta(SituacaoColetaEnum.Ativo);
         SetCliente(cliente);
@@ -36,7 +35,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         SetNotaFiscal(notaFiscal);
         SetPedidoCompra(pedidoCompra);
         SetNomeFantasia(nomeFantasia);
-        SetOcorrencias(ocorrencias);
     }
 
     public virtual void SetSituacaoColeta(SituacaoColetaEnum? situacaoColeta)
@@ -95,13 +93,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
             if (nomeFantasia.Length > 100)
                 throw new ArgumentOutOfRangeException("O nome fantasia nao pode ter mais que 100 caracteres");
             NomeFantasia = nomeFantasia;
-        }
-    
-     public virtual void SetOcorrencias(IEnumerable<OcorrenciaColetaMercadoria>? ocorrencias)
-        {
-            if (ocorrencias == null)
-                ocorrencias = new List<OcorrenciaColetaMercadoria>();
-            Ocorrencias = ocorrencias.ToList();
         }
     
     }

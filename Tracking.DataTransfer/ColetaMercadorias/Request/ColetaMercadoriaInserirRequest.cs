@@ -14,6 +14,5 @@ namespace Tracking.DataTransfer.ColetaMercadorias.Request
     public int IdTransportadora { get; set; }
     public string? NomeFantasia { get; set; }
     public IEnumerable<ItemColetaMercadoriaInserirRequest>? ItensProdutos { get; set; }
-    // public IEnumerable<OcorrenciaColetaMercadoriaInserirRequest>? Ocorrencias { get; set; }
     }
 }

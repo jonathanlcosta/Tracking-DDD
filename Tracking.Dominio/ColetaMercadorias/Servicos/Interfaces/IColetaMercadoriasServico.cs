@@ -17,7 +17,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces
         ColetaMercadoria Inserir(ColetaMercadoria coletaMercadoria);
         void AdicionarItem(ColetaMercadoria coletaMercadoria, ItemColetaMercadoria? itemColetaMercadoria);
         void AdicionarItem(ColetaMercadoria coletaMercadoria, IList<ItemColetaMercadoria> itensColetaMercadoria);
-        void AdicionarItem(ColetaMercadoria coletaMercadoria, IList<OcorrenciaColetaMercadoria> itensOcorrenciaColetaMercadoria);
         void Excluir(ColetaMercadoria coletaMercadoria);
     }
 }
