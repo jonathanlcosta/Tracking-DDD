@@ -9,6 +9,5 @@ namespace Tracking.DataTransfer.Ocorrencias.Response
     {
     public int Id { get; set; }
     public int IdColetaMercadoria { get; set; }
-    public int IdOcorrencia { get; set; }
     }
 }

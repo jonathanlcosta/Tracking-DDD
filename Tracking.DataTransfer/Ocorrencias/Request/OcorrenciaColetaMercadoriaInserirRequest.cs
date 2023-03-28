@@ -8,6 +8,5 @@ namespace Tracking.DataTransfer.Ocorrencias.Request
     public class OcorrenciaColetaMercadoriaInserirRequest
     {
     public int IdColetaMercadoria { get; set; }
-    public int IdOcorrencia { get; set; }
     }
 }

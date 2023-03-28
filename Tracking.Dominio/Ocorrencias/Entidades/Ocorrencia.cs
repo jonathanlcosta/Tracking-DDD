@@ -60,13 +60,13 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
                 throw new ArgumentNullException("O campo de transportadora não pode ser nulo.");
             Transportadora = transportadora;
         }
-         public virtual void SetTipoOcorrencia(TipoOcorrenciaEnum? tipoOcorrencia)
+         public virtual void SetTipoOcorrencia(TipoOcorrenciaEnum tipoOcorrencia)
         {
-            if (!tipoOcorrencia.HasValue)
+           if (!Enum.IsDefined(tipoOcorrencia))
             {
-                throw new ArgumentNullException("O tipo da ocorrência não pode ser nulo.");
+                throw new Exception("Tipo não existe");
             }
-            tipoOcorrencia = tipoOcorrencia.Value;
+            Tipo = tipoOcorrencia;
         }
 
         public virtual void SetOcorrencias(IEnumerable<OcorrenciaColetaMercadoria>? ocorrencias)
