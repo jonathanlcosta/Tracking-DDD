@@ -84,7 +84,6 @@ namespace Tracking.Aplicacao.Ocorrencias.Servicos
                 request.Ocorrencias!.ToList().ForEach(item =>
                 {
                     ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
-                    Ocorrencia? ocorrencia = ocorrenciasServico.Validar(item.IdOcorrencia);
                     ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
                 });
 

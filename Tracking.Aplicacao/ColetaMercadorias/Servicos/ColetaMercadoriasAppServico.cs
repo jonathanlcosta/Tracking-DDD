@@ -96,24 +96,23 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
                 request.ItensProdutos!.ToList().ForEach(item =>
                 {
                     Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
-                    ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
-                    Cliente? cliente = clientesServico.Validar(coletaMercadoria.Id);
+                    Cliente? cliente = clientesServico.Validar(request.IdCliente);
                     itemColetaMercadoriasServico.CalcularFrete(produto.Altura, produto.Largura, cliente.CustoPorPeso,cliente.Seguro,item.ValorFrete, item.Quantidade);
-                    itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coleta, 
+                    itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coletaMercadoria, 
                     item.ValorProduto, item.Descricao, item.Dimensoes, item.ValorFrete));
                 });
 
-                var ocorrencias = new List<OcorrenciaColetaMercadoria>();
+                // var ocorrencias = new List<OcorrenciaColetaMercadoria>();
 
-                request.Ocorrencias!.ToList().ForEach(item =>{
-                ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
-                Ocorrencia? ocorrencia = ocorrenciasServico.Validar(item.IdOcorrencia);
-                ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
-                }
-                );
+                // request.Ocorrencias!.ToList().ForEach(item =>{
+                // ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
+                // Ocorrencia? ocorrencia = ocorrenciasServico.Validar(item.IdOcorrencia);
+                // ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
+                // }
+                // );
 
                 coletaMercadoriasServico.AdicionarItem(coletaMercadoria, itensProdutos);
-                coletaMercadoriasServico.AdicionarItem(coletaMercadoria, ocorrencias);
+                // coletaMercadoriasServico.AdicionarItem(coletaMercadoria, ocorrencias);
 
                 var transacao = session.BeginTransaction();
             try

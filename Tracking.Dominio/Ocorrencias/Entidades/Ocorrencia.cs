@@ -38,12 +38,12 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
         }
         public virtual void SetNotaFiscal(string notaFiscal)
         {
-            string pattern = @"^NF-\d{4}-\d{4}-\d{4}$";
-            Regex regex = new Regex(pattern);
-            if (!regex.IsMatch(notaFiscal))
-            {
-                throw new ArgumentException("A nota fiscal está com formato invalido");
-            }
+            // string pattern = @"^NF-\d{4}-\d{4}-\d{4}$";
+            // Regex regex = new Regex(pattern);
+            // if (!regex.IsMatch(notaFiscal))
+            // {
+            //     throw new ArgumentException("A nota fiscal está com formato invalido");
+            // }
             NotaFiscal = notaFiscal;
         }
 

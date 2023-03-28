@@ -7,7 +7,6 @@ namespace Tracking.DataTransfer.ColetaMercadorias.Request
 {
     public class ItemColetaMercadoriaInserirRequest
     {
-    public int IdColetaMercadoria { get; set; }
     public int IdProduto { get; set; }
     public string? Descricao { get; set; }
     public int Quantidade { get; set; }

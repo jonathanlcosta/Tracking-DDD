@@ -19,7 +19,7 @@ namespace Tracking.Infra.ColetaMercadorias.Mapeamentos
             Map(x=>x.SituacaoColeta).CustomType<SituacaoColetaEnum>().Column("situacao");
             Map(x => x.PedidoCompra, "pedido_compra");
             Map(x => x.NomeFantasia, "nome_fantasia");
-            References(x => x.Cliente, "cpf_cnpj_cliente");
+            References(x => x.Cliente, "idCliente");
             References(x => x.Transportadora, "codigo_transportadora");
             HasMany(x => x.Ocorrencias).Cascade.All().Inverse().Not.LazyLoad();
             HasMany(x => x.ItensColetados).Cascade.All().Inverse().Not.LazyLoad();
