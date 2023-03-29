@@ -79,13 +79,11 @@ namespace Tracking.Aplicacao.Ocorrencias.Servicos
            Ocorrencia ocorrencia = ocorrenciasServico.Instanciar(request.NotaFiscal, request.IdCliente, 
            request.IdTransportadora, request.Data, request.Observacao);
 
-                var ocorrencias = new List<OcorrenciaColetaMercadoria>();
-
-                request.Ocorrencias!.ToList().ForEach(item =>
-                {
-                    ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
-                    ocorrencias.Add(ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia));
-                });
+                var ocorrencias = request.Ocorrencias.Select(item => 
+                { 
+                ColetaMercadoria? coleta = coletaMercadoriasServico.Validar(item.IdColetaMercadoria);
+                return ocorrenciaColetaMercadoriasServico.Instanciar(coleta, ocorrencia);
+                 }).ToList();
 
                 ocorrenciasServico.AdicionarOcorrencia(ocorrencia, ocorrencias);
 

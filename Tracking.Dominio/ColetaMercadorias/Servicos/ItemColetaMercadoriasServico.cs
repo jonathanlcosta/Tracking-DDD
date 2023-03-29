@@ -9,9 +9,9 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
 {
     public class ItemColetaMercadoriasServico : IItemColetaMercadoriasServico
     {   
-        public ItemColetaMercadoria Instanciar(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete)
+        public ItemColetaMercadoria Instanciar(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorFrete)
         {
-            return new ItemColetaMercadoria(produto, quantidade, coletaMercadoria, descricao, valorProduto, descricao, dimensoes, ValorFrete );
+            return new ItemColetaMercadoria(produto, quantidade, coletaMercadoria, valorFrete );
         }
 
          public decimal CalcularFrete(Produto produto, Cliente cliente, int quantidade)

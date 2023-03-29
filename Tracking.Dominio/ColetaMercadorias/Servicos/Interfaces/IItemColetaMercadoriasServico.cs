@@ -11,7 +11,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces
 {
     public interface IItemColetaMercadoriasServico
     {
-        ItemColetaMercadoria Instanciar(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorProduto, string descricao, decimal dimensoes, decimal ValorFrete);
+    ItemColetaMercadoria Instanciar(Produto produto, int quantidade, ColetaMercadoria coletaMercadoria, decimal valorFrete);
     
      decimal CalcularFrete(Produto produto, Cliente cliente, int quantidade);
     }

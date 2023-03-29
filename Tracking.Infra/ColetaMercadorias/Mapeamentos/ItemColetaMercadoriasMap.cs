@@ -15,9 +15,6 @@ namespace Tracking.Infra.ColetaMercadorias.Mapeamentos
             Schema("ProjetoComercio");
             Table("coletas_produtos");
             Id(x => x.Id, "id").GeneratedBy.Native();
-            Map(x => x.ValorProduto, "valor_produto");
-            Map(x => x.Descricao, "descricao_produto");
-            Map(x => x.Dimensoes, "dimensoes_produto");
             Map(x => x.Quantidade, "quantidade");
             Map(x => x.ValorFrete, "valor_frete");
             References(x => x.ColetaMercadoria, "codigo_coleta");

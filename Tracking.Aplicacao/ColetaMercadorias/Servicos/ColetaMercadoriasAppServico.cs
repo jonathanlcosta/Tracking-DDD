@@ -91,16 +91,23 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
            ColetaMercadoria coletaMercadoria = coletaMercadoriasServico.Instanciar(request.NotaFiscal, request.PedidoCompra, 
            request.IdCliente, request.IdTransportadora, request.NomeFantasia);
 
-                var itensProdutos = new List<ItemColetaMercadoria>();
+                // var itensProdutos = new List<ItemColetaMercadoria>();
 
-                request.ItensProdutos!.ToList().ForEach(item =>
-                {
-                    Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
-                    Cliente? cliente = clientesServico.Validar(request.IdCliente);
-                    var frete = itemColetaMercadoriasServico.CalcularFrete(produto, cliente, item.Quantidade);
-                    itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coletaMercadoria, 
-                    item.ValorProduto, item.Descricao, item.Dimensoes, frete));
-                });
+                // request.ItensProdutos!.ToList().ForEach(item =>
+                // {
+                //     Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
+                //     Cliente? cliente = clientesServico.Validar(request.IdCliente);
+                //     var frete = itemColetaMercadoriasServico.CalcularFrete(produto, cliente, item.Quantidade);
+                //     itensProdutos.Add(itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coletaMercadoria, frete));
+                // });
+
+                var itensProdutos = request.ItensProdutos.Select(item => 
+                { 
+                Produto? produto = produtosServico.ValidarProduto(item.IdProduto);
+                Cliente? cliente = clientesServico.Validar(request.IdCliente);
+                var frete = itemColetaMercadoriasServico.CalcularFrete(produto, cliente, item.Quantidade);
+                return itemColetaMercadoriasServico.Instanciar(produto, item.Quantidade, coletaMercadoria, frete);
+                 }).ToList();
 
                 coletaMercadoriasServico.AdicionarItem(coletaMercadoria, itensProdutos);
 
