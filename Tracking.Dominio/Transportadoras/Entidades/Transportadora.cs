@@ -46,7 +46,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
     public virtual void SetRazaoSocial(string razaoSocial)
     {
-        if (String.IsNullOrEmpty(razaoSocial))
+        if (String.IsNullOrWhiteSpace(razaoSocial))
                 throw new ArgumentNullException("O campo razao social deve ser preenchido.");
             if (razaoSocial.Length > 100)
                 throw new ArgumentException("O campo razao social deve ter no máximo 100 caracteres.");
@@ -55,7 +55,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
      public virtual void SetNomeFantasia(string nomeFantasia)
     {
-        if (String.IsNullOrEmpty(nomeFantasia))
+        if (String.IsNullOrWhiteSpace(nomeFantasia))
                 throw new ArgumentNullException("O campo nome fantasia deve ser preenchido.");
             if (nomeFantasia.Length > 100)
                 throw new ArgumentException("O campo nome fantasia deve ter no máximo 100 caracteres.");
@@ -64,7 +64,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
     public virtual void SetCnpj(string cnpj)
     {
-         if (String.IsNullOrEmpty(cnpj))
+         if (String.IsNullOrWhiteSpace(cnpj))
                 throw new ArgumentNullException("O CNPJ não pode ser vazio.");
             if (cnpj.Length != 14)
                 throw new ArgumentOutOfRangeException("O CNPJ deve conter 14 caracteres.");
@@ -73,7 +73,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
     public virtual void SetInscricaoEstadual(string inscricaoEstadual)
     {
-        if (String.IsNullOrEmpty(inscricaoEstadual))
+        if (String.IsNullOrWhiteSpace(inscricaoEstadual))
                 throw new ArgumentNullException("A Inscrição Estadual deve ser preenchida.");
             if (inscricaoEstadual.Length != 9)
                 throw new ArgumentException("A Inscrição Estadual deve ter 9 digitos.");
@@ -95,33 +95,33 @@ namespace Tracking.Dominio.Transportadoras.Entidades
             Telefones = telefones;
         }
 
-    public virtual void SetEndereco(string? endereco)
+    public virtual void SetEndereco(string endereco)
         {
-            if (String.IsNullOrEmpty(endereco))
+            if (String.IsNullOrWhiteSpace(endereco))
                 throw new ArgumentException($"O campo {nameof(endereco)} não pode ser vazio.");
             if (endereco.Length > 150)
                 throw new ArgumentOutOfRangeException($"O campo {nameof(endereco)} deve ter no máximo 150 caracteres.");
             Endereco = endereco;
         }
 
-    public virtual void SetCep(string? cep)
+    public virtual void SetCep(string cep)
         {
-            if (String.IsNullOrEmpty(cep))
+            if (String.IsNullOrWhiteSpace(cep))
                 throw new ArgumentException($"O campo {nameof(cep)} não pode ser vazio.");
             if (cep.Length > 9)
                 throw new ArgumentOutOfRangeException($"O campo {nameof(cep)} deve ter 9 caracteres.");
-            Cep = cep;
+            Cep = cep.Replace("-", "").Replace(".", "");
         }
 
     public virtual void SetCidade(string cidade)
     {
-        if (String.IsNullOrEmpty(cidade))
+        if (String.IsNullOrWhiteSpace(cidade))
                 throw new ArgumentException($"O campo {nameof(cidade)} não pode ser vazio.");
                 Cidade = cidade;
     }
     public virtual void SetUf(string uf)
         {
-            if (String.IsNullOrEmpty(uf))
+            if (String.IsNullOrWhiteSpace(uf))
                 throw new ArgumentNullException("O estado não pode ser vazio");
             if (uf.Length != 2)
                 throw new ArgumentOutOfRangeException("O estado deve possuir dois caracteres");
@@ -131,10 +131,10 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
     public virtual void SetSite(string site)
     {
-        if (String.IsNullOrEmpty(site))
+        if (String.IsNullOrWhiteSpace(site))
                 throw new ArgumentNullException("O campo site deve ser preenchido.");
-            if (site.Length > 100)
-                throw new ArgumentException("O campo site deve ter no máximo 100 caracteres.");
+            if (site.Length > 150)
+                throw new ArgumentException("O campo site deve ter no máximo 2.083 caracteres.");
             Site = site;
     }
     }
