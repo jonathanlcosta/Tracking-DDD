@@ -45,17 +45,12 @@ namespace Tracking.Dominio.Telefones.Entidades
         }
         public virtual void SetNumeroTelefone(string numeroTelefone)
         {
-
+            if (String.IsNullOrEmpty(numeroTelefone))
+                throw new ArgumentNullException("O numero de telefone não pode ser vazio.");
             if (numeroTelefone.Length > 14)
                 throw new ArgumentOutOfRangeException("O numero de Telefone deve possuir no máximo 14 caracteres");
 
-            NumeroTelefone = numeroTelefone;
-        }
-
-
-        public virtual void SetCodigo(int codigo)
-        {
-            Codigo = codigo;
+            NumeroTelefone = numeroTelefone.Replace("-", "").Replace(".", "");
         }
 
         public virtual void SetTransportadora(Transportadora transportadora)
