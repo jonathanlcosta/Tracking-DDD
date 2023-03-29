@@ -35,6 +35,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         SetNotaFiscal(notaFiscal);
         SetPedidoCompra(pedidoCompra);
         SetNomeFantasia(nomeFantasia);
+        SetTransportadora(transportadora);
     }
 
     public virtual void SetSituacaoColeta(SituacaoColetaEnum? situacaoColeta)
