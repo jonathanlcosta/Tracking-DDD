@@ -40,7 +40,7 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
                 transportadora.Emails[1].SetEnderecoEmail(transportadoraEditarRequest.Email2);
                 var emails = transportadora.Emails;
 
-            transportadora = transportadorasServico.EditarTransportadora(codigoTransportadora, 
+            transportadora = transportadorasServico.Editar(codigoTransportadora, 
                                     transportadora.RazaoSocial, 
                                     transportadora.NomeFantasia,
                                     transportadora.Cnpj,
@@ -73,7 +73,7 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
            var transacao = session.BeginTransaction();
             try
             {
-                var transportadora = transportadorasServico.ValidarTransportadora(codigo);
+                var transportadora = transportadorasServico.Validar(codigo);
                 transportadorasRepositorio.Excluir(transportadora);
                 if(transacao.IsActive)
                     transacao.Commit();
@@ -96,7 +96,7 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
                 var emails = new List<Email>();
                 emails.Add(new Email(transportadoraInserirRequest.Email1, null));
                 emails.Add(new Email(transportadoraInserirRequest.Email2, null));
-            var transportadora = transportadorasServico.InstanciarTransportadora(
+            var transportadora = transportadorasServico.Instanciar(
                 transportadoraInserirRequest.RazaoSocial, 
                                     transportadoraInserirRequest.NomeFantasia,
                                     transportadoraInserirRequest.Cnpj,
@@ -182,7 +182,7 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
 
         public TransportadoraResponse Recuperar(int codigoTransportadora)
         {
-            var transportadora = transportadorasServico.ValidarTransportadora(codigoTransportadora);
+            var transportadora = transportadorasServico.Validar(codigoTransportadora);
             var response = mapper.Map<TransportadoraResponse>(transportadora);
             return response;
         }

@@ -17,11 +17,11 @@ namespace Tracking.Dominio.Transportadoras.Servicos
         {
             this.transportadorasRepositorio = transportadorasRepositorio;
         }
-        public Transportadora EditarTransportadora(int codigoTransportadora, string razaoSocial, string nomeFantasia, 
+        public Transportadora Editar(int codigoTransportadora, string razaoSocial, string nomeFantasia, 
     string cnpj, string inscricaoEstadual, IList<Email> emails, IList<Telefone> telefones, string endereco,
     string cidade, string cep, string uf, string site)
         {
-           var transportadora = ValidarTransportadora(codigoTransportadora);
+           var transportadora = Validar(codigoTransportadora);
             if(!string.IsNullOrEmpty(razaoSocial) && transportadora.RazaoSocial != razaoSocial) transportadora.SetRazaoSocial(razaoSocial);
             if(!string.IsNullOrEmpty(nomeFantasia) && transportadora.NomeFantasia != nomeFantasia) transportadora.SetNomeFantasia(nomeFantasia);
             if(!string.IsNullOrEmpty(cnpj) && transportadora.Cnpj != cnpj) transportadora.SetCnpj(cnpj);
@@ -37,19 +37,19 @@ namespace Tracking.Dominio.Transportadoras.Servicos
             return transportadora;
         }
 
-        public void ExcluirTransportadora(int codigoTransportadora)
+        public void Excluir(int codigoTransportadora)
         {
-            Transportadora transportadora = ValidarTransportadora(codigoTransportadora);
+            Transportadora transportadora = Validar(codigoTransportadora);
             transportadorasRepositorio.Excluir(transportadora);
         }
 
-        public Transportadora InserirTransportadora(Transportadora transportadora)
+        public Transportadora Inserir(Transportadora transportadora)
         {
             var transportadoraResponse = transportadorasRepositorio.Inserir(transportadora);
             return transportadoraResponse;
         }
 
-        public Transportadora InstanciarTransportadora(string razaoSocial, string nomeFantasia, 
+        public Transportadora Instanciar(string razaoSocial, string nomeFantasia, 
     string cnpj, string inscricaoEstadual, IList<Email> emails, IList<Telefone> telefones, string endereco,
     string cidade, string cep, string uf, string site)
         {
@@ -59,7 +59,7 @@ namespace Tracking.Dominio.Transportadoras.Servicos
             return transportadoraResponse;
         }
 
-        public Transportadora ValidarTransportadora(int codigoTransportadora)
+        public Transportadora Validar(int codigoTransportadora)
         {
             var transportadoraResponse = this.transportadorasRepositorio.Recuperar(codigoTransportadora);
             if(transportadoraResponse is null)

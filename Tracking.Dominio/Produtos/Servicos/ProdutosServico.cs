@@ -15,9 +15,9 @@ namespace Tracking.Dominio.Produtos.Servicos
         {
             this.produtosRepositorio = produtosRepositorio;
         }
-        public Produto EditarProduto(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
+        public Produto Editar(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
         {
-            var produto = ValidarProduto(codigoProduto);
+            var produto = Validar(codigoProduto);
             if(!string.IsNullOrEmpty(descricao) && produto.Descricao != descricao) produto.SetDescricao(descricao);
             if (preco != 0) produto.SetPreco(preco);
             if (peso != 0) produto.SetPeso(peso);
@@ -28,25 +28,25 @@ namespace Tracking.Dominio.Produtos.Servicos
             return produto;
         }
 
-        public void ExcluirProduto(int id)
+        public void Excluir(int id)
         {
-            Produto produto = ValidarProduto(id);
+            Produto produto = Validar(id);
             produtosRepositorio.Excluir(produto);
         }
 
-        public Produto InserirProduto(Produto produto)
+        public Produto Inserir(Produto produto)
         { 
             var produtoResponse = produtosRepositorio.Inserir(produto);
             return produtoResponse;
         }
 
-        public Produto InstanciarProduto(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
+        public Produto Instanciar(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento)
         {
            var produtoResponse = new Produto(descricao, preco, peso, altura, largura, comprimento);
             return produtoResponse;
         }   
 
-        public Produto ValidarProduto(int codigoProduto)
+        public Produto Validar(int codigoProduto)
         {
             var produtoResponse = this.produtosRepositorio.Recuperar(codigoProduto);
             if(produtoResponse is null)

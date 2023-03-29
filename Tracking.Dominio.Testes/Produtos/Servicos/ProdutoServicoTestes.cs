@@ -28,7 +28,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             public void Dado_ProdutoNaoEncontrado_Espero_Excecao()
             {
                 produtosRepositorio.Recuperar(Arg.Any<int>()).Returns(x => null);
-                sut.Invoking(x => x.ValidarProduto(2)).Should().Throw<Exception>();
+                sut.Invoking(x => x.Validar(2)).Should().Throw<Exception>();
 
             }
 
@@ -36,7 +36,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             public void Dado_ProdutoEncontrado_Espero_ProdutoValido()
             {
                 produtosRepositorio.Recuperar(Arg.Any<int>()).Returns(produtoValido);
-                sut.ValidarProduto(2).Should().BeSameAs(produtoValido);
+                sut.Validar(2).Should().BeSameAs(produtoValido);
             }
         }
         public class InstanciarMetodo : ProdutosServicoTestes
@@ -50,7 +50,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
                 decimal altura = 2;
                 decimal largura = 1;
                 decimal comprimento = 1;
-                var produto = sut.InstanciarProduto(descricao, preco, peso, altura, largura, comprimento );
+                var produto = sut.Instanciar(descricao, preco, peso, altura, largura, comprimento );
 
                 produto.Should().NotBeNull();
                 produto.Descricao.Should().Be(descricao);
@@ -68,7 +68,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             {
                 produtosRepositorio.Inserir(Arg.Any<Produto>()).Returns(produtoValido);
 
-                var produto = sut.InserirProduto(produtoValido);
+                var produto = sut.Inserir(produtoValido);
 
                 produtosRepositorio.Received(1).Inserir(produtoValido);
                 produto.Should().BeOfType<Produto>();
@@ -83,7 +83,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             {
                 produtosRepositorio.Recuperar(1).Returns(produtoValido);
 
-                sut.EditarProduto(1, "parabrisa", 123, 1, 1, 2, 3);
+                sut.Editar(1, "parabrisa", 123, 1, 1, 2, 3);
 
                 produtoValido.CodigoProduto.Should().Be(1);
                 produtoValido.Descricao.Should().Be("parabrisa");
@@ -102,7 +102,7 @@ namespace Tracking.Dominio.Testes.Produtos.Servicos
             {
                 produtosRepositorio.Recuperar(1).Returns(produtoValido);
 
-                sut.ExcluirProduto(1);
+                sut.Excluir(1);
 
                 produtosRepositorio.Received().Excluir(produtoValido);
             }

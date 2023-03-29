@@ -55,7 +55,7 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
             Transportadora? transportadora = null;
             if (codTransportadora.HasValue && codTransportadora != 0)
             {
-                transportadora = transportadorasServico.ValidarTransportadora(codTransportadora.Value);
+                transportadora = transportadorasServico.Validar(codTransportadora.Value);
             }
 
             Ocorrencia ocorrencia = Validar(id);
@@ -87,7 +87,7 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
          DateTime data, string observacao)
         {
            Cliente cliente = clientesServico.Validar(codCliente);
-            Transportadora transportadora = transportadorasServico.ValidarTransportadora(codTransportadora);
+            Transportadora transportadora = transportadorasServico.Validar(codTransportadora);
             return new Ocorrencia(notaFiscal, cliente, transportadora,
             new List<OcorrenciaColetaMercadoria>(), data, observacao);
         }

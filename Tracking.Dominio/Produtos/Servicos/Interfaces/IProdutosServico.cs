@@ -8,10 +8,10 @@ namespace Tracking.Dominio.Produtos.Servicos.Interfaces
 {
     public interface IProdutosServico
     {
-        Produto ValidarProduto(int codigoProduto);
-        Produto InserirProduto(Produto produto);
-        void ExcluirProduto(int id);
-        Produto InstanciarProduto(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
-        Produto EditarProduto(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
+        Produto Validar(int codigoProduto);
+        Produto Inserir(Produto produto);
+        void Excluir(int id);
+        Produto Instanciar(string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
+        Produto Editar(int codigoProduto, string descricao, decimal preco, decimal peso, decimal altura, decimal largura, decimal comprimento);
     }
 }

@@ -30,7 +30,7 @@ namespace Produtos.Aplicacao.Produtos.Servicos
         {
             produtoEditarRequest = produtoEditarRequest ?? new ProdutoEditarRequest();
             var produto = mapper.Map<Produto>(produtoEditarRequest);
-            produto = produtosServico.EditarProduto(codigo, 
+            produto = produtosServico.Editar(codigo, 
                                     produto.Descricao, 
                                     produto.Preco, 
                                     produto.Peso, 
@@ -57,7 +57,7 @@ namespace Produtos.Aplicacao.Produtos.Servicos
         public ProdutoResponse Inserir(ProdutoInserirRequest produtoInserirRequest)
         {
             produtoInserirRequest = produtoInserirRequest ?? new ProdutoInserirRequest();
-            var produto = produtosServico.InstanciarProduto(
+            var produto = produtosServico.Instanciar(
                 produtoInserirRequest.Descricao, 
                                     produtoInserirRequest.Preco, 
                                     produtoInserirRequest.Peso, 
@@ -82,7 +82,7 @@ namespace Produtos.Aplicacao.Produtos.Servicos
 
         public ProdutoResponse Recuperar(int codigoProduto)
         {
-            var produto = produtosServico.ValidarProduto(codigoProduto);
+            var produto = produtosServico.Validar(codigoProduto);
             var response = mapper.Map<ProdutoResponse>(produto);
             return response;
         }
@@ -129,7 +129,7 @@ namespace Produtos.Aplicacao.Produtos.Servicos
             var transacao = session.BeginTransaction();
             try
             {
-                var produto = produtosServico.ValidarProduto(codigo);
+                var produto = produtosServico.Validar(codigo);
                 produtosRepositorio.Excluir(produto);
                 if(transacao.IsActive)
                     transacao.Commit();

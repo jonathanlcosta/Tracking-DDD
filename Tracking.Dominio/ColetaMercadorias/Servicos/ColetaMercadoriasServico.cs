@@ -54,7 +54,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
             Transportadora? transportadora = null;
             if (codTransportadora.HasValue && codTransportadora != 0)
             {
-                transportadora = transportadorasServico.ValidarTransportadora(codTransportadora.Value);
+                transportadora = transportadorasServico.Validar(codTransportadora.Value);
             }
 
             ColetaMercadoria coletaMercadoria = Validar(codigo);
@@ -80,7 +80,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
         public ColetaMercadoria Instanciar(string notaFiscal, string pedidoCompra, int codCliente, int codTransportadora, string nomeFantasia)
         {
             Cliente cliente = clientesServico.Validar(codCliente);
-            Transportadora transportadora = transportadorasServico.ValidarTransportadora(codTransportadora);
+            Transportadora transportadora = transportadorasServico.Validar(codTransportadora);
 
 
             return new ColetaMercadoria(notaFiscal, pedidoCompra, cliente, transportadora, 
