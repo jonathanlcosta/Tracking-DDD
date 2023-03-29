@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FizzWare.NBuilder;
 using FluentAssertions;
+using NSubstitute;
 using Tracking.Dominio.Emails.Entidades;
 using Tracking.Dominio.Transportadoras.Entidades;
 using Xunit;
@@ -13,9 +14,11 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
     public class TransportadoraTestes
     {
         private readonly Transportadora sut; 
+         private Email emails { get; set; }
         public TransportadoraTestes()
         {
             sut = Builder<Transportadora>.CreateNew().Build();
+            this.emails = Substitute.For<Email>(); 
         }
 
         public class SetRazaoSocialMetodo: TransportadoraTestes

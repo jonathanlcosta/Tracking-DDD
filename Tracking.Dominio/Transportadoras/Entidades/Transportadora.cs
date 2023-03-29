@@ -23,7 +23,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
     public virtual string? Site { get; protected set; }
 
     public Transportadora(string razaoSocial, string nomeFantasia, 
-    string cnpj, string inscricaoEstadual, IList<Email> Emails, IList<Telefone> telefones, IList<Email> emails, string endereco,
+    string cnpj, string inscricaoEstadual, IList<Email> emails, IList<Telefone> telefones, string endereco,
     string cidade, string cep, string uf, string site)
     {
         SetRazaoSocial(razaoSocial);

@@ -54,7 +54,7 @@ namespace Tracking.Dominio.Transportadoras.Servicos
     string cidade, string cep, string uf, string site)
         {
             var transportadoraResponse = new Transportadora(razaoSocial,nomeFantasia, 
-    cnpj, inscricaoEstadual, emails, telefones, emails, endereco,
+    cnpj, inscricaoEstadual, emails, telefones, endereco,
  cidade, cep, uf, site);
             return transportadoraResponse;
         }
