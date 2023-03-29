@@ -14,7 +14,7 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Profiles
         public ItensColetaMercadoriasProfile()
         {
             CreateMap<ItemColetaMercadoria, ItemColetaMercadoriaResponse>()
-             .ForMember(x => x.Produto, m => m.MapFrom(y => y.Produto!));
+             .ForMember(x => x.Produto, m => m.MapFrom(y => y.Produto!.CodigoProduto));
             CreateMap<ItemColetaMercadoriaInserirRequest, ItemColetaMercadoria>();
         }
     }
