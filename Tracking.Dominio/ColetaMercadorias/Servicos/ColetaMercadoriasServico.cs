@@ -84,7 +84,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
 
 
             return new ColetaMercadoria(notaFiscal, pedidoCompra, cliente, transportadora, 
-            nomeFantasia, new List<ItemColetaMercadoria>());
+            nomeFantasia, new List<ItemColetaMercadoria>(), new List<OcorrenciaColetaMercadoria>());
         }
 
         public ColetaMercadoria Validar(int codigo)

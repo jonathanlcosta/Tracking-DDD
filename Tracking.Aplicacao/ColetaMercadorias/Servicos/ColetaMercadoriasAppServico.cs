@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Tracking.Aplicacao.ColetaMercadorias.Servicos.Interfaces;
 using Tracking.DataTransfer.ColetaMercadorias.Request;
@@ -11,8 +7,6 @@ using Tracking.Dominio.Clientes.Servicos.Interfaces;
 using Tracking.Dominio.ColetaMercadorias.Entidades;
 using Tracking.Dominio.ColetaMercadorias.Repositorios;
 using Tracking.Dominio.ColetaMercadorias.Servicos.Interfaces;
-using Tracking.Dominio.Ocorrencias.Entidades;
-using Tracking.Dominio.Ocorrencias.Servicos.Interfaces;
 using Tracking.Dominio.Paginacao;
 using Tracking.Dominio.Produtos.Entidades;
 using Tracking.Dominio.Produtos.Servicos.Interfaces;
@@ -28,12 +22,9 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
         private readonly ISession session;
         private readonly IClientesServico clientesServico;
         private readonly IProdutosServico produtosServico;
-        private readonly IOcorrenciasServico ocorrenciasServico;
-        private readonly IOcorrenciaColetaMercadoriasServico ocorrenciaColetaMercadoriasServico;
         public ColetaMercadoriasAppServico(IColetaMercadoriasServico coletaMercadoriasServico, IColetaMercadoriasRepositorio coletaMercadoriasRepositorio,
          IItemColetaMercadoriasServico itemColetaMercadoriasServico, IClientesServico clientesServico,
-         IProdutosServico produtosServico, IMapper mapper, ISession session, IOcorrenciasServico ocorrenciasServico,
-         IOcorrenciaColetaMercadoriasServico ocorrenciaColetaMercadoriasServico )
+         IProdutosServico produtosServico, IMapper mapper, ISession session)
         {
             this.coletaMercadoriasRepositorio = coletaMercadoriasRepositorio;
             this.coletaMercadoriasServico = coletaMercadoriasServico;
@@ -42,9 +33,6 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
             this.produtosServico = produtosServico;
             this.mapper = mapper;
             this.session = session;
-            this.ocorrenciasServico = ocorrenciasServico;
-            this.ocorrenciaColetaMercadoriasServico = ocorrenciaColetaMercadoriasServico;
-
         }
         public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest request)
         {

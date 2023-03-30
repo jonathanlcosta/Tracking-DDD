@@ -22,6 +22,7 @@ namespace Tracking.Infra.ColetaMercadorias.Mapeamentos
             References(x => x.Cliente, "idCliente");
             References(x => x.Transportadora, "codigo_transportadora");
             HasMany(x => x.ItensColetados).Cascade.All().Inverse().Not.LazyLoad();
+            HasMany(x => x.Ocorrencias).Cascade.All().Inverse().Not.LazyLoad();
         }
     }
 }

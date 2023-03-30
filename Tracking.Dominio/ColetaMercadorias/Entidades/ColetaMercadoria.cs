@@ -20,6 +20,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     public virtual string? NomeFantasia { get; protected set; }
     public virtual SituacaoColetaEnum SituacaoColeta { get; protected set; }
     public virtual IList<ItemColetaMercadoria>? ItensColetados { get; protected set; }
+    public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; protected set; }
 
     protected ColetaMercadoria()
     {
@@ -27,7 +28,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
     }
 
     public ColetaMercadoria(string notaFiscal, string pedidoCompra, Cliente cliente, Transportadora transportadora,
-     string nomeFantasia, IList<ItemColetaMercadoria> itensColetados)
+     string nomeFantasia, IList<ItemColetaMercadoria> itensColetados, IList<OcorrenciaColetaMercadoria> ocorrencias)
     {
         SetSituacaoColeta(SituacaoColetaEnum.Ativo);
         SetCliente(cliente);
@@ -36,6 +37,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         SetPedidoCompra(pedidoCompra);
         SetNomeFantasia(nomeFantasia);
         SetTransportadora(transportadora);
+        SetOcorrencias(ocorrencias);
     }
 
     public virtual void SetSituacaoColeta(SituacaoColetaEnum? situacaoColeta)
@@ -66,6 +68,12 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
                 itensColeta = new List<ItemColetaMercadoria>();
             ItensColetados = itensColeta.ToList();
         }
+
+    public virtual void SetOcorrencias(IEnumerable<OcorrenciaColetaMercadoria> ocorrencias)
+    {
+        if(ocorrencias == null)
+        ocorrencias = new List<OcorrenciaColetaMercadoria>();
+        Ocorrencias = ocorrencias.ToList();    }
 
      public virtual void SetNotaFiscal(string notaFiscal)
         {
