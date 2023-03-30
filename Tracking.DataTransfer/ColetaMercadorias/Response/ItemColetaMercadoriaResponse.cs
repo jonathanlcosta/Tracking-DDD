@@ -10,6 +10,7 @@ namespace Tracking.DataTransfer.ColetaMercadorias.Response
     {
     public int Id { get; set; }
     public ProdutoResponse? Produto { get; set; }
+    public int? IdColetaMercadoria { get; set; }
     public int Quantidade { get; set; }
     public decimal ValorFrete { get; set; }
     }
