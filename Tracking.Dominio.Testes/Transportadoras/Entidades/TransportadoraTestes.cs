@@ -13,12 +13,10 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
 {
     public class TransportadoraTestes
     {
-        private readonly Transportadora sut; 
-         private Email emails { get; set; }
+        private readonly Transportadora sut;
         public TransportadoraTestes()
         {
             sut = Builder<Transportadora>.CreateNew().Build();
-            this.emails = Substitute.For<Email>(); 
         }
 
         public class SetRazaoSocialMetodo: TransportadoraTestes
