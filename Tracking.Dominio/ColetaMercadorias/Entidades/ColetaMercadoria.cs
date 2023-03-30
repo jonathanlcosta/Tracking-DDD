@@ -69,12 +69,8 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
 
      public virtual void SetNotaFiscal(string notaFiscal)
         {
-            // string pattern = @"^NF-\d{4}-\d{4}-\d{4}$";
-            // Regex regex = new Regex(pattern);
-            // if (!regex.IsMatch(notaFiscal))
-            // {
-            //     throw new ArgumentException("A nota fiscal está com formato invalido");
-            // }
+            if(String.IsNullOrWhiteSpace(notaFiscal))
+            throw new ArgumentException("A nota fiscal não pode vir com valor nulo");
             NotaFiscal = notaFiscal;
         }
 
