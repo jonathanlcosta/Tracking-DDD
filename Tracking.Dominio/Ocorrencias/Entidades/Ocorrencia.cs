@@ -19,6 +19,33 @@ namespace Tracking.Dominio.Ocorrencias.Entidades
         public virtual string? Observacao { get; protected set; }
         public virtual IList<OcorrenciaColetaMercadoria>? Ocorrencias { get; protected set; }
         public virtual DateTime Data { get; protected set; }
+         public virtual string SituacaoDescricao
+    {
+        get
+        {
+            switch (Tipo)
+            {
+                case TipoOcorrenciaEnum.EntregaColetada:
+                    return "A entrega foi coletada";
+                case TipoOcorrenciaEnum.EnderecoErrado:
+                    return "O produto não foi entregue pois o endereço está incorreto";
+                case TipoOcorrenciaEnum.ClienteAusente:
+                return "O cliente está ausente";
+                case TipoOcorrenciaEnum.ProdutoChegouNaTransportadora:
+                return "O produto chegou na transportadora";
+                case TipoOcorrenciaEnum.ProdutoEmTransferenciaEntreAsFiliais:
+                return "O produto está em transferencia entre as filiais";
+                case TipoOcorrenciaEnum.ProdutoSaiuParaEntrega:
+                return "O produto saiu para entrega";
+                case TipoOcorrenciaEnum.ProdutoEntregue:
+                return "O produto foi entregue ao destinatário";
+                case TipoOcorrenciaEnum.ProdutoExtraviado:
+                return "O produto foi extraviado";
+                default:
+                    return "Desconhecido";
+            }
+        }
+    }
         protected Ocorrencia()
         {
                 

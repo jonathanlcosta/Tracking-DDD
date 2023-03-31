@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tracking.Dominio.Ocorrencias.Enumeradores;
 
 namespace Tracking.DataTransfer.Ocorrencias.Request
 {

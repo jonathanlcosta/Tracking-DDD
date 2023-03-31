@@ -79,7 +79,7 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
            ColetaMercadoria coletaMercadoria = coletaMercadoriasServico.Instanciar(request.NotaFiscal, request.PedidoCompra, 
            request.IdCliente, request.IdTransportadora, request.NomeFantasia);
 
-                var itensProdutos = request.ItensProdutos.Select(item => 
+                var itensProdutos = request.ItensColetados.Select(item => 
                 { 
                 Produto? produto = produtosServico.Validar(item.IdProduto);
                 Cliente? cliente = clientesServico.Validar(request.IdCliente);

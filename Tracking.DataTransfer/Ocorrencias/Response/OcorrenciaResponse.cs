@@ -13,6 +13,7 @@ namespace Tracking.DataTransfer.Ocorrencias.Response
     public int IdTransportadora { get; set; }
     public string? Observacao { get; set; }
     public DateTime Data { get; set; }
+    public string? SituacaoDescricao { get; set; }
     public IEnumerable<OcorrenciaColetaMercadoriaResponse>? Ocorrencias { get; set; }
     }
 }
