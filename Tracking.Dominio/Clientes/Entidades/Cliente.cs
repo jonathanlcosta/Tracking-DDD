@@ -31,7 +31,7 @@ namespace Tracking.Dominio.Clientes.Entidades
    protected Cliente()
         { }
 
-        private Cliente(string? nome, string? email, string endereco, string cidade, string cep, UfEnum uf, string telefone, RegiaoEnum regiao)
+        private Cliente(string nome, string email, string endereco, string cidade, string cep, UfEnum uf, string telefone, RegiaoEnum regiao)
         {
             SetNome(nome);
             SetEmail(email);

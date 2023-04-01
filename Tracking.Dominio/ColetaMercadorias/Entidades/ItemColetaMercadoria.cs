@@ -59,19 +59,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Entidades
         ValorFrete = frete;
     }
 
-    public virtual decimal CalcularFrete(decimal altura, decimal largura, decimal custoPorPeso, decimal seguro)
-    {
-        var pesoCubado = altura * largura * 300;
-        ValorFrete = pesoCubado * custoPorPeso + seguro;
-        var valorTotal = ValorFrete * Quantidade;
-        return valorTotal;
-
-    }
-
-     public virtual void CalcularFreteTotal(decimal valorFrete, int quantidade)
-    {
-        ValorFrete = valorFrete * quantidade;
-    }
+    
 
 }
 

@@ -21,9 +21,6 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
         var valorFrete = pesoCubado * cliente.CustoPorPeso + cliente.Seguro;
         var valorTotal = valorFrete * quantidade;
         return valorTotal;
-
-
-
     }
 
     }
