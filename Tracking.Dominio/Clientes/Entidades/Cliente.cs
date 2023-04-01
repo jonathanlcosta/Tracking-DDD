@@ -183,28 +183,28 @@ namespace Tracking.Dominio.Clientes.Entidades
             Regiao = regiao;
         }
     public virtual void SetCustoPorPeso(UfEnum uf, RegiaoEnum regiao)
+{
+    switch (uf)
     {
-            if(uf == UfEnum.BA && regiao == RegiaoEnum.Capital )
-                CustoPorPeso = 2.50m;
+        case UfEnum.BA:
+            CustoPorPeso = regiao == RegiaoEnum.Capital ? 2.50m : 2.60m;
+            break;
 
-            if(uf == UfEnum.BA  && regiao == RegiaoEnum.Interior )
-                CustoPorPeso = 2.60m;
+        case UfEnum.ES:
+            CustoPorPeso = regiao == RegiaoEnum.Capital ? 1.80m : 2.10m;
+            break;
 
-            if(uf == UfEnum.ES && regiao == RegiaoEnum.Capital )
-                CustoPorPeso = 1.80m;
+        case UfEnum.RJ:
+            CustoPorPeso = regiao == RegiaoEnum.Capital ? 2.30m : 2.50m;
+            break;
 
-            if(uf == UfEnum.ES && regiao == RegiaoEnum.Interior )
-                CustoPorPeso = 2.10m;  
-
-             if(uf == UfEnum.RJ && regiao == RegiaoEnum.Capital )
-                CustoPorPeso = 2.30m;  
-
-            if(uf == UfEnum.RJ && regiao == RegiaoEnum.Interior )
-                CustoPorPeso = 2.50m;
-
-             Uf = uf;
-            Regiao = regiao;
+        default:
+            throw new ArgumentException("Combinação UF/Região inválida");
     }
+
+    Uf = uf;
+    Regiao = regiao;
+}
 
     public virtual void SetSeguro(UfEnum uf, RegiaoEnum regiao)
         {
