@@ -90,7 +90,7 @@ namespace Tracking.Dominio.Transportadoras.Entidades
 
      public virtual void SetTelefones(IList<Telefone> telefones)
         {
-            if (telefones[0] == null && telefones[1] == null)
+            if (telefones == null)
                 throw new ArgumentNullException("Um dos 2 campos precisa ter um telefone");
             Telefones = telefones;
         }

@@ -6,6 +6,7 @@ using FizzWare.NBuilder;
 using FluentAssertions;
 using NSubstitute;
 using Tracking.Dominio.Emails.Entidades;
+using Tracking.Dominio.Telefones.Entidades;
 using Tracking.Dominio.Transportadoras.Entidades;
 using Xunit;
 
@@ -18,6 +19,34 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
         {
             sut = Builder<Transportadora>.CreateNew().Build();
         }
+
+        public class Construtor
+            {
+                [Fact]
+                public void Quando_Parametros_ForemValidos_Espero_ObjetoIntegro()
+                {
+                    IList<Email> emails = new List<Email>();
+                    Transportadora transportadora1 = new Transportadora();
+                    Email email = new Email("aleatorio@email.com", transportadora1);
+                    emails.Add(email);
+                    IList<Telefone> telefones = new List<Telefone>();
+                    Telefone telefone = new Telefone("27887432234", transportadora1);
+                    telefones.Add(telefone);
+                    var transportadora = new Transportadora("Empresa Teste", "Empresa", "12345678911234",
+                    "123456789", emails, telefones, "Rua aleatoria", "Salvador", "123345672", "BA", "www.google.com.br");
+                    transportadora.RazaoSocial.Should().Be("Empresa Teste");
+                    transportadora.Cnpj.Should().Be("12345678911234");
+                    transportadora.Cidade.Should().Be("Salvador");
+                    transportadora.Endereco.Should().Be("Rua aleatoria");
+                    transportadora.Cep.Should().Be("123345672");
+                    transportadora.NomeFantasia.Should().Be("Empresa");
+                    transportadora.Emails.Should().Contain(emails);
+                    transportadora.Telefones.Should().Contain(telefones);
+                    
+                }
+
+            }
+
 
         public class SetRazaoSocialMetodo: TransportadoraTestes
         {
@@ -166,6 +195,41 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
             }
     }
 
+    public class SetEmailsMetodo : TransportadoraTestes
+    {
+        [Fact]
+        public void Dado_ListaEmailNulo_Espero_Excecao()
+        {
+        IList<Email> emails = null;
+         sut.Invoking(x => x.SetEmail(emails)).Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Dado_ListaEmailValido_Espero_PropriedadesPreenchidas()
+        {
+           IList<Email> emails = new List<Email>();
+           sut.SetEmail(emails);
+
+        }
+    }
+
+    public class SetTelefones: TransportadoraTestes
+    {
+        [Fact]
+        public void Dado_ListaTelefoneNulo_Espero_Excecao()
+        {
+            IList<Telefone> telefones = null;
+            sut.Invoking(x => x.SetTelefones(telefones)).Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Dado_ListaTelefoneValido_Espero_PropriedadesPreenchidas()
+        {
+            IList<Telefone> telefones = new List<Telefone>();
+            sut.SetTelefones(telefones);
+
+        }
+    }
     public class SetCEPMetodo: TransportadoraTestes
         {
             [Theory]
@@ -178,7 +242,7 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
             }
 
             [Fact]
-            public void Dado_NomeFantasiaMaisDeNoveCaracteres_Espero_Exception()
+            public void Dado_CepMaisDeNoveCaracteres_Espero_Exception()
             {
                 sut.Invoking(x => x.SetCep(new string('*', 10))).Should().Throw<Exception>();
             }
