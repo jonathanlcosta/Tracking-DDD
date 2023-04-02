@@ -51,36 +51,28 @@ namespace Tracking.Dominio.Testes.Transportadoras.Servicos
             [Fact]
             public void Dado_ParametrosParaCriarTransportadora_Espero_TransportadoraInstanciado()
             {
-                string razaoSocial = "Empresa aleatoria";
-                string nomeFantasia = "Empresa";
-                string cnpj = "12345678911234" ;
-                string inscricaoEstadual = "123456789";
-                IList<Email> emails = new List<Email>();
-                Email email = new Email("email@email.com", transportadoraValido);
-                emails.Add(email);
-                IList<Telefone> telefones = new List<Telefone>();
-                Telefone telefone = new Telefone("2733432123", transportadoraValido);
-                telefones.Add(telefone);
-                string endereco = "Rua aleatoria";
-                string cidade = "Bahia";
-                string cep = "12345123";
-                string uf = "BA";
-                string site = "www.aleatorio.com";
-                var transportadora = sut.Instanciar(razaoSocial, nomeFantasia,  cnpj, inscricaoEstadual, emails, 
-                telefones, endereco, cidade, cep, uf, site);
+            var email = new Email("email@email.com", transportadoraValido);
+            var telefone = new Telefone("2733432123", transportadoraValido);
+            var emails = new List<Email> { email };
+            var telefones = new List<Telefone> { telefone };
 
-                transportadora.Should().NotBeNull();
-                transportadora.NomeFantasia.Should().Be(nomeFantasia);
-                transportadora.RazaoSocial.Should().Be(razaoSocial);
-                transportadora.Cnpj.Should().Be(cnpj);
-                transportadora.InscricaoEstadual.Should().Be(inscricaoEstadual);
-                transportadora.Endereco.Should().Be(endereco);
-                transportadora.Cidade.Should().Be(cidade);
-                transportadora.Cep.Should().Be(cep);
-                transportadora.Uf.Should().Be(uf);
-                transportadora.Site.Should().Be(site);
-                transportadora.Emails.Should().Contain(emails);
-                transportadora.Telefones.Should().Contain(telefones);
+            // Act
+            var transportadora = sut.Instanciar("Empresa aleatoria", "Empresa", "12345678911234", "123456789", emails,
+                telefones, "Rua aleatoria", "Bahia", "12345123", "BA", "www.aleatorio.com");
+
+            // Assert
+            Assert.NotNull(transportadora);
+            Assert.Equal("Empresa aleatoria", transportadora.RazaoSocial);
+            Assert.Equal("Empresa", transportadora.NomeFantasia);
+            Assert.Equal("12345678911234", transportadora.Cnpj);
+            Assert.Equal("123456789", transportadora.InscricaoEstadual);
+            Assert.Equal("Rua aleatoria", transportadora.Endereco);
+            Assert.Equal("Bahia", transportadora.Cidade);
+            Assert.Equal("12345123", transportadora.Cep);
+            Assert.Equal("BA", transportadora.Uf);
+            Assert.Equal("www.aleatorio.com", transportadora.Site);
+            Assert.Contains(email, transportadora.Emails);
+            Assert.Contains(telefone, transportadora.Telefones);
             }
         }
         public class InserirMetodo : TransportadorasServicoTestes

@@ -20,28 +20,39 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
             sut = Builder<Transportadora>.CreateNew().Build();
         }
 
-        public class Construtor
+        public class Construtor : TransportadoraTestes
             {
                 [Fact]
                 public void Quando_Parametros_ForemValidos_Espero_ObjetoIntegro()
                 {
-                    IList<Email> emails = new List<Email>();
-                    Transportadora transportadora1 = new Transportadora();
-                    Email email = new Email("aleatorio@email.com", transportadora1);
-                    emails.Add(email);
-                    IList<Telefone> telefones = new List<Telefone>();
-                    Telefone telefone = new Telefone("27887432234", transportadora1);
-                    telefones.Add(telefone);
-                    var transportadora = new Transportadora("Empresa Teste", "Empresa", "12345678911234",
-                    "123456789", emails, telefones, "Rua aleatoria", "Salvador", "123345672", "BA", "www.google.com.br");
-                    transportadora.RazaoSocial.Should().Be("Empresa Teste");
-                    transportadora.Cnpj.Should().Be("12345678911234");
-                    transportadora.Cidade.Should().Be("Salvador");
-                    transportadora.Endereco.Should().Be("Rua aleatoria");
-                    transportadora.Cep.Should().Be("123345672");
-                    transportadora.NomeFantasia.Should().Be("Empresa");
-                    transportadora.Emails.Should().Contain(emails);
-                    transportadora.Telefones.Should().Contain(telefones);
+                var email = new Email("aleatorio@email.com", sut);
+                var telefone = new Telefone("27887432234", sut);
+                var emails = new List<Email> { email };
+                var telefones = new List<Telefone> { telefone };
+                var transportadora = new Transportadora(
+                    "Empresa Teste", 
+                    "Empresa", 
+                    "12345678911234",
+                    "123456789", 
+                    emails, 
+                    telefones, 
+                    "Rua aleatoria", 
+                    "Salvador", 
+                    "123345672", 
+                    "BA", 
+                    "www.google.com.br");
+
+                    Assert.Equal("Empresa Teste", transportadora.RazaoSocial);
+                    Assert.Equal("Empresa", transportadora.NomeFantasia);
+                    Assert.Equal("12345678911234", transportadora.Cnpj);
+                    Assert.Equal("123456789", transportadora.InscricaoEstadual);
+                    Assert.Equal(emails, transportadora.Emails);
+                    Assert.Equal(telefones, transportadora.Telefones);
+                    Assert.Equal("Rua aleatoria", transportadora.Endereco);
+                    Assert.Equal("Salvador", transportadora.Cidade);
+                    Assert.Equal("123345672", transportadora.Cep);
+                    Assert.Equal("BA", transportadora.Uf);
+                    Assert.Equal("www.google.com.br", transportadora.Site);
                     
                 }
 
