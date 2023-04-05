@@ -139,7 +139,7 @@ namespace Tracking.Dominio.Testes.Transportadoras.Entidades
             [Fact]
             public void Dado_CnpjValido_Espero_PropriedadesPreenchidas()
             {
-                string cnpj = "123-45678911234";
+                string cnpj = "12345678911234";
                 sut.SetCnpj(cnpj);
                 sut.Cnpj.Should().NotBeNullOrWhiteSpace(cnpj);
                 sut.Cnpj.Should().Be(cnpj);

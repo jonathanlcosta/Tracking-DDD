@@ -65,6 +65,7 @@ namespace Tracking.Dominio.Ocorrencias.Servicos
             if (!String.IsNullOrEmpty(notaFiscal)) ocorrencia.SetNotaFiscal(notaFiscal);
             if (data == DateTime.MinValue) ocorrencia.SetData(data);
             ocorrencia.SetObservacao(observacao);
+            ocorrencia = ocorrenciasRepositorio.Editar(ocorrencia);
             return ocorrencia;
         }
 

@@ -64,6 +64,7 @@ namespace Tracking.Dominio.ColetaMercadorias.Servicos
             if (!String.IsNullOrEmpty(notaFiscal)) coletaMercadoria.SetNotaFiscal(notaFiscal);
             if (!String.IsNullOrEmpty(pedidoCompra)) coletaMercadoria.SetPedidoCompra(pedidoCompra);
             if (!String.IsNullOrEmpty(nomeFantasia)) coletaMercadoria.SetNomeFantasia(nomeFantasia);
+            coletaMercadoria = coletaMercadoriasRepositorio.Editar(coletaMercadoria);
             return coletaMercadoria;
         }
 

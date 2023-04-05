@@ -28,15 +28,14 @@ namespace Produtos.Aplicacao.Produtos.Servicos
 
         public ProdutoResponse Editar(int codigo, ProdutoEditarRequest produtoEditarRequest)
         {
-            produtoEditarRequest = produtoEditarRequest ?? new ProdutoEditarRequest();
             var produto = mapper.Map<Produto>(produtoEditarRequest);
             produto = produtosServico.Editar(codigo, 
-                                    produto.Descricao, 
-                                    produto.Preco, 
-                                    produto.Peso, 
-                                    produto.Altura,
-                                    produto.Largura,
-                                    produto.Largura);
+                                    produtoEditarRequest.Descricao, 
+                                    produtoEditarRequest.Preco, 
+                                    produtoEditarRequest.Peso, 
+                                    produtoEditarRequest.Altura,
+                                    produtoEditarRequest.Largura,
+                                    produtoEditarRequest.Comprimento);
             var transacao = session.BeginTransaction();
             try
             {
@@ -56,7 +55,6 @@ namespace Produtos.Aplicacao.Produtos.Servicos
 
         public ProdutoResponse Inserir(ProdutoInserirRequest produtoInserirRequest)
         {
-            produtoInserirRequest = produtoInserirRequest ?? new ProdutoInserirRequest();
             var produto = produtosServico.Instanciar(
                 produtoInserirRequest.Descricao, 
                                     produtoInserirRequest.Preco, 

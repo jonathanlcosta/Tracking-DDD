@@ -37,7 +37,7 @@ namespace Tracking.Aplicacao.Ocorrencias.Servicos
         }
         public OcorrenciaResponse Editar(int codigo, OcorrenciaEditarRequest request)
         {
-           Ocorrencia ocorrencia = ocorrenciasServico.Validar(codigo);
+           var ocorrencia = mapper.Map<Ocorrencia>(request);
             ocorrencia = ocorrenciasServico.Atualizar(codigo, request.NotaFiscal,request.IdCliente, request.IdTransportadora,
             request.Data, request.Observacao);
             var transacao = session.BeginTransaction();

@@ -37,7 +37,7 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Servicos
         public ColetaMercadoriaResponse Editar(int codigoColeta, ColetaMercadoriaEditarRequest request)
         {
 
-           ColetaMercadoria coleta = coletaMercadoriasServico.Validar(codigoColeta);
+           var coleta = mapper.Map<ColetaMercadoria>(request);
             coleta = coletaMercadoriasServico.Atualizar(codigoColeta, request.NotaFiscal,request.PedidoCompra, request.IdCliente,
             request.IdTransportadora, request.NomeFantasia);
             var transacao = session.BeginTransaction();

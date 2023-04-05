@@ -39,7 +39,7 @@ namespace Tracking.Dominio.Testes.Transportadoras.Servicos
             }
 
             [Fact]
-            public void Dado_TransportadoraEncontrado_Espero_ProdutoValido()
+            public void Dado_TransportadoraEncontrado_Espero_TransportadoraValido()
             {
                 transportadoraRepositorio.Recuperar(Arg.Any<int>()).Returns(transportadoraValido);
                 sut.Validar(2).Should().BeSameAs(transportadoraValido);
@@ -78,21 +78,21 @@ namespace Tracking.Dominio.Testes.Transportadoras.Servicos
         public class InserirMetodo : TransportadorasServicoTestes
         {
             [Fact]
-            public void Dado_ProdutoValido_Espero_ProdutoInserido()
+            public void Dado_TransportadoraValido_Espero_TransportadoraInserida()
             {
                 transportadoraRepositorio.Inserir(Arg.Any<Transportadora>()).Returns(transportadoraValido);
 
-                var produto = sut.Inserir(transportadoraValido);
+                var transportadora = sut.Inserir(transportadoraValido);
 
                 transportadoraRepositorio.Received(1).Inserir(transportadoraValido);
-                produto.Should().BeOfType<Transportadora>();
-                produto.Should().Be(transportadoraValido);
+                transportadora.Should().BeOfType<Transportadora>();
+                transportadora.Should().Be(transportadoraValido);
             }
         }
         public class ExcluirMetodo : TransportadorasServicoTestes
         {
             [Fact]
-            public void Quando_MetodoForChamado_Espero_ProdutoDeletado()
+            public void Quando_MetodoForChamado_Espero_TransportadoraDeletada()
             {
                 transportadoraRepositorio.Recuperar(1).Returns(transportadoraValido);
 

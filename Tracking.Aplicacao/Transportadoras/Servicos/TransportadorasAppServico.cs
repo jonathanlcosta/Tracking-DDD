@@ -29,7 +29,6 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
         }
         public TransportadoraResponse Editar(int codigoTransportadora, TransportadoraEditarRequest transportadoraEditarRequest)
         {
-            transportadoraEditarRequest = transportadoraEditarRequest ?? new TransportadoraEditarRequest();
             var transportadora = mapper.Map<Transportadora>(transportadoraEditarRequest);
 
                 transportadora.Telefones[0].SetNumeroTelefone(transportadoraEditarRequest.NumeroTelefone1);
@@ -41,17 +40,17 @@ namespace Tracking.Aplicacao.Transportadoras.Servicos
                 var emails = transportadora.Emails;
 
             transportadora = transportadorasServico.Editar(codigoTransportadora, 
-                                    transportadora.RazaoSocial, 
-                                    transportadora.NomeFantasia,
-                                    transportadora.Cnpj,
-                                    transportadora.InscricaoEstadual,
+                                    transportadoraEditarRequest.RazaoSocial, 
+                                    transportadoraEditarRequest.NomeFantasia,
+                                    transportadoraEditarRequest.Cnpj,
+                                    transportadoraEditarRequest.InscricaoEstadual,
                                     emails, 
                                     telefones, 
-                                    transportadora.Endereco,
-                                    transportadora.Cidade,
-                                    transportadora.Cep,
-                                    transportadora.Uf,
-                                    transportadora.Site);
+                                    transportadoraEditarRequest.Endereco,
+                                    transportadoraEditarRequest.Cidade,
+                                    transportadoraEditarRequest.Cep,
+                                    transportadoraEditarRequest.Uf,
+                                    transportadoraEditarRequest.Site);
             var transacao = session.BeginTransaction();
             try
             {
