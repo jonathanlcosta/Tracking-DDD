@@ -18,9 +18,6 @@ namespace Tracking.Aplicacao.Transportadoras.Profiles
                 .ForMember(dest => dest.NumeroTelefone2, m => m.MapFrom(src => src.Telefones.LastOrDefault()!.NumeroTelefone))
                 .ForMember(dest => dest.Email1, m => m.MapFrom(src => src.Emails.First().EnderecoEmail))
                 .ForMember(dest => dest.Email2, m => m.MapFrom(src => src.Emails.LastOrDefault()!.EnderecoEmail));
-        CreateMap<Transportadora, TransportadoraListarRequest>();
-        CreateMap<TransportadoraInserirRequest, Transportadora>();
-        CreateMap<TransportadoraEditarRequest, Transportadora>();
         }
     }
 }

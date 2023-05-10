@@ -15,9 +15,6 @@ namespace Tracking.Aplicacao.Clientes.Profiles
         {
             ReplaceMemberName("CpfCnpj", "Cnpj");
             CreateMap<Cliente, PessoaJuridicasResponse>();
-            CreateMap<PessoaJuridicasListarRequest, Cliente>();
-            CreateMap<PessoaJuridicasCadastroRequest, Cliente>();
-            CreateMap<PessoaJuridicasEditarRequest, Cliente>();
             CreateMap<PessoaJuridicasResponse, Cliente>();
         }
     }

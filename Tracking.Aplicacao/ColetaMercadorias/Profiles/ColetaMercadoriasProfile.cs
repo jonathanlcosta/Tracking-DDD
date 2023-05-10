@@ -16,9 +16,6 @@ namespace Tracking.Aplicacao.ColetaMercadorias.Profiles
              CreateMap<ColetaMercadoria, ColetaMercadoriaResponse>()
                 .ForMember(x => x.IdCliente, m => m.MapFrom(y => y.Cliente!.Id))
                 .ForMember(x => x.IdTransportadora, m => m.MapFrom(y => y.Transportadora!.CodigoTransportadora));
-            CreateMap<ColetaMercadoriaListarRequest, ColetaMercadoria>();
-            CreateMap<ColetaMercadoriaEditarRequest, ColetaMercadoria>();
-            CreateMap<ColetaMercadoriaInserirRequest, ColetaMercadoria>();
         }
     }
 }

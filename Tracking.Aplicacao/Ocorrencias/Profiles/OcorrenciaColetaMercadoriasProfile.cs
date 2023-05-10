@@ -15,7 +15,6 @@ namespace Tracking.Aplicacao.Ocorrencias.Profiles
         {
             CreateMap<OcorrenciaColetaMercadoria, OcorrenciaColetaMercadoriaResponse>()
             .ForMember(x => x.IdColetaMercadoria, m => m.MapFrom(y => y.ColetaMercadoria!.Id));
-            CreateMap<OcorrenciaColetaMercadoriaInserirRequest, OcorrenciaColetaMercadoria>();
         }
     }
 }

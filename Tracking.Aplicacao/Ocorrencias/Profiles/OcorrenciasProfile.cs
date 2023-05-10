@@ -16,9 +16,6 @@ namespace Tracking.Aplicacao.Ocorrencias.Profiles
              CreateMap<Ocorrencia, OcorrenciaResponse>()
                 .ForMember(x => x.IdCliente, m => m.MapFrom(y => y.Cliente!.Id))
                 .ForMember(x => x.IdTransportadora, m => m.MapFrom(y => y.Transportadora!.CodigoTransportadora));
-            CreateMap<OcorrenciaListarRequest, Ocorrencia>();
-            CreateMap<OcorrenciaEditarRequest, Ocorrencia>();
-            CreateMap<OcorrenciaInserirRequest, Ocorrencia>();
         }
     }
 }
